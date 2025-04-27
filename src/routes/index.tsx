@@ -117,8 +117,7 @@ const Index: React.FC = () => {
             <div className="max-w-screen-xl m-auto p-4 rounded bg-gray-300 text-gray-600 text-center text-xl mt-12">
                 <h1 className="text-3xl mb-3 text-black">Zaufali nam</h1>
                 <div className="w-full relative">
-                    <div className="swiper centered-slide-carousel swiper-container relative">
-                        <div className="swiper-wrapper">
+                    <div className="grid grid-cols-4 gap-4">
                             {shops.map((shop, i) => (
                                 <div className="swiper-slide" key={i}>
                                     <div
@@ -132,7 +131,6 @@ const Index: React.FC = () => {
                                 </div>
                             ))}
                         </div>
-                    </div>
                 </div>
             </div>
             <div className="my-20 font-sm text-gray-800 text-center m-auto w-1/2">Nasz serwis wykorzystuje pliki cookie.

@@ -11,7 +11,7 @@ function Sidebar() {
             <Button href="/panel/plugins" highlighted={pathName == "/panel/plugins"}>Pluginy</Button>
             <hr className="h-px bg-gray-200 border-0 dark:bg-gray-700"/>
             <Button href="/logout">Wyloguj</Button>
-            <div className="flex flex-row items-center justify-center mt-4">
+            <div className="flex flex-row items-center justify-center mt-4 mt-auto">
                 <div className="w-16 h-16">
                     <img src={localStorage.getItem("avatar") || "no avatar"} alt="avatar"
                          className="w-16 h-16 rounded-xl"/>

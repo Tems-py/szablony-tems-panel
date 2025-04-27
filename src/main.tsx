@@ -6,6 +6,7 @@ import Panel from "./routes/panel.tsx";
 import Navbar from "./components/navbar.tsx";
 import Login from "./components/login.tsx";
 import Logout from "./components/logout.tsx";
+import Shop from "./routes/shop.tsx";
 
 createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
@@ -14,6 +15,7 @@ createRoot(document.getElementById('root')!).render(
             <Route path="/" element={<><Navbar/><Index/></>}/>
             <Route path="/login" element={<Login/>} />
             <Route path="/logout" element={<Logout/>} />
+            <Route path="/shop/:shopId" element={<Shop/>} />
         </Routes>
     </BrowserRouter>,
 )

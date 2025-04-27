@@ -1,1 +1,23 @@
 @import "tailwindcss";
+
+.swiper-wrapper {
+    width: 100%;
+    height: max-content !important;
+    padding-bottom: 64px !important;
+    -webkit-transition-timing-function: linear !important;
+    transition-timing-function: linear !important;
+    position: relative;
+}
+.swiper-pagination-bullet {
+    background: #4f46e5;
+}
+.swiper-pagination-bullet-active {
+    background: #4f46e5 !important;
+}
+
+hr {
+    height: 0;
+    color: inherit;
+    border-top-width: 1px;
+    border-color: #e5e7eb
+}
