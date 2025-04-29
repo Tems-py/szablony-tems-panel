@@ -4,8 +4,8 @@ import './main.css'
 import Index from "./routes";
 import Panel from "./routes/panel.tsx";
 import Navbar from "./components/navbar.tsx";
-import Login from "./components/login.tsx";
-import Logout from "./components/logout.tsx";
+import Login from "./routes/login.tsx";
+import Logout from "./routes/logout.tsx";
 import Shop from "./routes/shop.tsx";
 
 createRoot(document.getElementById('root')!).render(
