@@ -29,7 +29,7 @@ const Panel: React.FC = () => {
                     navigator("/login", {replace: true});
                     return
                 }
-                alert(response.data.msg)
+                alert(response.data.message)
 
             }
             setAdminInvite(response.data.admin_invite)

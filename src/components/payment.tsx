@@ -17,8 +17,8 @@ const Payment = (props: {daysHook: [number, React.Dispatch<React.SetStateAction<
             <label className="">
                 Ilość dni:
                 <br/>
-                <input type="range" name="" id="days" min="30" max="365" defaultValue="95" value={days} onChange={e => changeDays(Number(e.target.value))}/>
-                <input type="number" name="" id="days_num" defaultValue="95" value={days} onChange={e => changeDays(Number(e.target.value))}
+                <input type="range" name="" id="days" min="30" max="365" value={days} onChange={e => changeDays(Number(e.target.value))}/>
+                <input type="number" name="" id="days_num" value={days} onChange={e => changeDays(Number(e.target.value))}
                        className="mt-1.5 rounded-lg border-gray-300 bg-white  text-gray-700 sm:text-sm p-2"/>
             </label>
             <label htmlFor="">
