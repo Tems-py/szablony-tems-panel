@@ -14,7 +14,7 @@ const FileSystem = () => {
                         type="button" value="Zamień plik" id="upload" disabled/>
 
                     <div className="p-3 bg-gray-200 rounded-lg flex flex-row gap-2" id="home">
-                        <img className="w-5" src="/src/assets/img/home.png" alt=""/>
+                        <img className="w-5" src="/public/img/home.png" alt=""/>
                         Powrót
                     </div>
                     <div className="p-3 bg-gray-200 rounded-lg">

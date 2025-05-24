@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Button from "../components/button.tsx";
-import {useNavigate} from "react-router";
+import {Link, useNavigate} from "react-router";
 import Sidebar from "../components/sidebar.tsx";
 import axios from "axios";
 import {backendUrl} from "../config.ts";
@@ -47,11 +47,11 @@ const Panel: React.FC = () => {
                     <h2 className="text-xl">Hosting:</h2>
                     <div className="flex flex-row flex-wrap gap-1.5">
                         {shops.map((shop, i) => (
-                            <a href={"/shop/" + shop.id} key={i}
+                            <Link to={"/shop/" + shop.id} key={i}
                                className="p-10 bg-gray-300 rounded-xl flex flex-col justify-center w-64">
                                 <p className="font-bold mt-3 text-center inline-block rounded border border-indigo-600 bg-indigo-600 pt-3 pb-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500">{shop.domain}</p>
                                 <p className="text-gray-600 text-center mt-1">Sklep aktywny do: <br/>{shop.date}</p>
-                            </a>
+                            </Link>
                         ))}
 
                         {shops.length == 0 && <p>Nie masz wykupionego żadnego planu hostingowego</p>}
