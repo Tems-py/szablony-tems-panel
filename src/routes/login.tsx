@@ -1,7 +1,7 @@
 import {useNavigate, useSearchParams} from "react-router";
 import {useEffect} from "react";
 import axios from "axios";
-import {backendUrl} from "../config.ts";
+import {backendUrl, loginUrl} from "../config.ts";
 
 function Login() {
     const [searchParams, _] = useSearchParams();
@@ -9,7 +9,7 @@ function Login() {
     const code = searchParams.get("code")
 
     if (code === null) {
-        window.location.href = "https://discord.com/api/oauth2/authorize?client_id=807173971459309649&redirect_uri=http%3A%2F%2Flocalhost:5173%2Flogin&response_type=code&scope=identify%20email%20guilds.join"
+        window.location.href = loginUrl
         return (
             <div className="flex h-screen w-screen items-center justify-center bg-gray-100">
                 <div>

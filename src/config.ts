@@ -1,1 +1,2 @@
-export const backendUrl = "http://127.0.0.1:3000/api/"
+export const backendUrl = import.meta.env.VITE_BACKEND_URL;
+export const loginUrl = import.meta.env.VITE_LOGIN_URL;
