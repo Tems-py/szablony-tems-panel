@@ -13,6 +13,8 @@ import Logs from "./routes/shop/logs.tsx";
 import NotFound from "./routes/notFound.tsx";
 import FileSystem from "./routes/shop/fileSystem.tsx";
 import Config from "./routes/shop/config.tsx";
+import Restart from "./routes/shop/restart.tsx";
+import Resources from "./routes/resources.tsx";
 
 const defaultShop = {
     id: Number(0),
@@ -24,6 +26,7 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
         <Routes>
             <Route path="/panel" element={<Panel/>}/>
+            <Route path="/panel/resources" element={<Resources/>}/>
             <Route path="/" element={<><Navbar/><Index/></>}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="/logout" element={<Logout/>}/>
@@ -32,6 +35,7 @@ createRoot(document.getElementById('root')!).render(
             <Route path="/shop/:shopId/logs" element={<ShopView page={<Logs shop={defaultShop}/>}/>}/>
             <Route path="/shop/:shopId/files" element={<ShopView page={<FileSystem shop={defaultShop}/>}/>}/>
             <Route path="/shop/:shopId/config" element={<ShopView page={<Config shop={defaultShop}/>}/>}/>
+            <Route path="/shop/:shopId/restart" element={<ShopView page={<Restart shop={defaultShop}/>}/>}/>
 
             <Route path='*' element={<NotFound />} />
         </Routes>

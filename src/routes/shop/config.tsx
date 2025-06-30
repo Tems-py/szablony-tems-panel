@@ -1,11 +1,12 @@
 import axios from "axios";
 import {backendUrl} from "../../config.ts";
-import {useEffect, useRef} from "react";
-import MonacoEditor from "react-monaco-editor";
+import {useEffect, useState} from "react";
+import Editor from "@monaco-editor/react";
 
 const Config = (props: { shop: { "domain": string, "date": string, id: number } }) => {
     const token = localStorage.getItem("token");
-    const monacoEditorRef = useRef<any | null>(null)
+    const [config, setConfig] = useState<string>()
+
     const getConfig = () => {
         axios.get(backendUrl + "shop/" + props.shop.id + "/file_system", {
             params: {
@@ -20,16 +21,15 @@ const Config = (props: { shop: { "domain": string, "date": string, id: number } 
                 return
             }
             console.log(r.data)
-            if (monacoEditorRef.current) {
-                monacoEditorRef.current.editor.setValue(r.data.data);
-            }
+
+            setConfig(r.data.data);
         })
     }
 
     const saveConfig = () => {
         axios.post(backendUrl + "shop/" + props.shop.id + "/file_system", {
             path: "nuxt.config.js",
-            data: monacoEditorRef.current.editor.getValue()
+            data: config
         }, {
             headers: {
                 "Authorization": "Bearer " + token
@@ -59,16 +59,21 @@ const Config = (props: { shop: { "domain": string, "date": string, id: number } 
                 </button>
             </div>
             <div id="editor" className="w-full h-full rouded-md mt-3">
-                <MonacoEditor
-                    // width="800"
-                    // height="600"
+                <Editor
+                    height="820px"
                     language="javascript"
+                    value={config}
+                    onChange={(value) => setConfig(value)}
                     theme="vs-dark"
-                    options={{selectOnLineNumbers: true, "semanticHighlighting.enabled": true}}
-
-                    editorDidMount={(editor) => (monacoEditorRef.current = {editor})}
-                    // onChange={::this.onChange}
-                    // editorDidMount={::this.editorDidMount}
+                    options={{
+                        selectOnLineNumbers: true,
+                        roundedSelection: false,
+                        readOnly: false,
+                        cursorStyle: 'line',
+                        automaticLayout: true,
+                        minimap: {enabled: true},
+                        fontSize: 14,
+                    }}
                 />
             </div>
         </div>

@@ -9,6 +9,7 @@ const Panel: React.FC = () => {
     const [adminInvite, setAdminInvite] = useState("")
     const [boughtTemplates, setBoughtTemplates] = useState<string[]>([])
     const [shops, setShops] = useState<{ date: string, domain: string, id: number }[]>([])
+    const [templates, setTemplates] = useState<{ name: string, price: number }[]>([])
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -34,6 +35,7 @@ const Panel: React.FC = () => {
             setAdminInvite(response.data.admin_invite)
             setBoughtTemplates(response.data.bought_templates)
             setShops(response.data.shops)
+            setTemplates(response.data.templates)
         })
     }, [])
 
@@ -47,21 +49,30 @@ const Panel: React.FC = () => {
                     <section className="col-span-2 lg:col-span-3">
                         <div className="bg-white p-6 rounded-lg shadow-md lg:col-span-2">
                             <h2 className="text-xl font-semibold mb-2 text-gray-800 mb-4">Twoje usługi</h2>
-                            <Link to="/create/shop" className="py-2 px-4 bg-gray-800 text-white rounded-md hover:bg-gray-700">Kup hosting</Link>
+                            <Link to="/create/shop"
+                                  className="py-2 px-4 bg-gray-800 text-white rounded-md hover:bg-gray-700">Kup
+                                hosting</Link>
                             <p className="text-gray-600 my-4">Zarządzaj swoimi planami hostingu szablonów</p>
                             {shops.length == 0 && <p>Nie masz wykupionego żadnego planu hostingowego</p>}
-                            <div className="overflow-x-auto">
+                            {shops.length != 0 && <div className="overflow-x-auto">
                                 <table className="min-w-full divide-y divide-gray-200">
                                     <thead className="bg-gray-50 w-full">
                                     <tr>
-                                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th scope="col"
+                                            className="px-6 py-3 text-left font-medium text-gray-500 uppercase tracking-wider">
                                             Nazwa
                                         </th>
-                                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Status
+                                        {/*<th scope="col"*/}
+                                        {/*    className="px-6 py-3 text-left  font-medium text-gray-500 uppercase tracking-wider">*/}
+                                        {/*    Status*/}
+                                        {/*</th>*/}
+                                        <th scope="col"
+                                            className="px-6 py-3 text-left  font-medium text-gray-500 uppercase tracking-wider">
+                                            Ważny do
                                         </th>
-                                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Ważność
+                                        <th scope="col"
+                                            className="px-6 py-3 text-left  font-medium text-gray-500 uppercase tracking-wider">
+                                            Akcje
                                         </th>
                                     </tr>
                                     </thead>
@@ -69,17 +80,15 @@ const Panel: React.FC = () => {
                                     {shops.map((shop) => (
                                         <tr key={shop.id} onClick={() => navigator("/shop/" + shop.id)}
                                             className="cursor-pointer hover:bg-gray-100 hover:text-md transition-all duration-100">
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{shop.domain}</td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{shop.id}</td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{shop.date}</td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-
-                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap ">{shop.domain}</td>
+                                            {/*<td className="px-6 py-4 whitespace-nowrap">{shop.status == 200 ? "Działa" : "Błąd"}</td>*/}
+                                            <td className="px-6 py-4 whitespace-nowrap ">{shop.date}</td>
+                                            <td className="px-3 py-2 whitespace-nowrap"><span className="px-3 py-2 rounded-lg border border-transparent hover:border-gray-300 box-border">Zarządzaj</span></td>
                                         </tr>
                                     ))}
                                     </tbody>
                                 </table>
-                            </div>
+                            </div>}
                         </div>
                     </section>
 
@@ -107,7 +116,7 @@ const Panel: React.FC = () => {
                         <div className="bg-white p-6 rounded-lg shadow-md lg:col-span-3">
                             <h2 className="text-xl font-semibold mb-2 text-gray-800">Dostępne szablony</h2>
                             <p className="text-gray-600 mb-4">Darmowe i płatne szablony, których możesz użyć</p>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                            <div className="flex flex-wrap gap-4">
                                 {boughtTemplates.map((template) => (
                                     <div
                                         key={template}
@@ -136,22 +145,22 @@ const Panel: React.FC = () => {
                         <div className="bg-white p-6 rounded-lg shadow-md lg:col-span-3">
                             <h2 className="text-xl font-semibold mb-2 text-gray-800">Szablony do zakupu</h2>
                             <p className="text-gray-600 mb-4">Szablony premium, dostępne za opłatą</p>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                                {boughtTemplates.map((template) => (
+                            <div className="flex flex-wrap gap-4">
+                                {templates.map((template, i) => (
                                     <div
-                                        key={template}
+                                        key={i}
                                         className="border border-gray-200 rounded-lg overflow-hidden flex flex-col items-center text-center bg-white shadow-sm"
                                     >
                                         <img
-                                            src={"/img/" + template + ".png"}
-                                            alt={template}
+                                            src={"/img/" + template.name + ".png"}
+                                            alt={template.name}
                                             width={150}
                                             height={100}
                                             className="object-cover w-full h-24 rounded-t-lg"
                                         />
                                         <div className="p-4 flex-1 flex flex-col justify-between w-full">
-                                            <h3 className="font-semibold text-lg mb-2 text-gray-800">{template}</h3>
-                                            <p className="text-gray-500 mb-4">{template}</p>
+                                            <h3 className="font-semibold text-lg mb-2 text-gray-800">{template.name}</h3>
+                                            <p className="text-gray-500 mb-4">{template.price == 0 ? "Darmowy" : `${template.price}zł`}</p>
                                             <button
                                                 className="w-full py-2 px-4 bg-gray-800 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-500">
                                                 Kup ten szablon

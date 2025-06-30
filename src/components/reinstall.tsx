@@ -21,7 +21,7 @@ const Reinstall = (props: { shop: { "domain": string, "date": string, id: number
     }
 
     return (
-        <div className="bg-red-200 p-2 rounded mt-3">
+        <div className="bg-red-200 p-2 rounded mt-3 shadow-lg">
             <h2 className="font-xl font-bold">Reinstalacja szablonu</h2>
             <p>Reinstalacja szablonu usuwa wszystkie pliki szablonu i instaluje je jeszcze raz. Opcja ta
                 przydatna jest
