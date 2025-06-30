@@ -49,7 +49,7 @@ const Panel: React.FC = () => {
                     <section className="col-span-2 lg:col-span-3">
                         <div className="bg-white p-6 rounded-lg shadow-md lg:col-span-2">
                             <h2 className="text-xl font-semibold mb-2 text-gray-800 mb-4">Twoje usługi</h2>
-                            <Link to="/create/shop"
+                            <Link to="/panel/buy"
                                   className="py-2 px-4 bg-gray-800 text-white rounded-md hover:bg-gray-700">Kup
                                 hosting</Link>
                             <p className="text-gray-600 my-4">Zarządzaj swoimi planami hostingu szablonów</p>

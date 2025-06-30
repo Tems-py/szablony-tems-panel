@@ -7,10 +7,11 @@ import {backendUrl} from "../config.ts";
 
 const ShopView = (props: { page: ReactNode & { props?: { shop?: any } } }) => {
     const {shopId} = useParams();
-    const [shop, setShop] = useState<{ "domain": string, "date": string, id: number }>({
+    const [shop, setShop] = useState<{ "domain": string, "date": string, id: number, diskUsage: number }>({
         id: Number(shopId),
         domain: "Ładowanie...",
         date: "...",
+        diskUsage: 0
     })
     const navigator = useNavigate();
     const token = localStorage.getItem("token");
@@ -33,7 +34,8 @@ const ShopView = (props: { page: ReactNode & { props?: { shop?: any } } }) => {
                     {
                         id: Number(shopId),
                         domain: r.data.domain,
-                        date: r.data.date
+                        date: r.data.date,
+                        diskUsage: r.data.disk_usage
                     })
             }
         ).catch(r => {

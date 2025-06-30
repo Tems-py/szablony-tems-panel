@@ -15,11 +15,13 @@ import FileSystem from "./routes/shop/fileSystem.tsx";
 import Config from "./routes/shop/config.tsx";
 import Restart from "./routes/shop/restart.tsx";
 import Resources from "./routes/resources.tsx";
+import CreateShop from "./routes/createShop.tsx";
 
 const defaultShop = {
     id: Number(0),
     domain: "Ładowanie...",
     date: "...",
+    diskUsage: 0
 }
 
 createRoot(document.getElementById('root')!).render(
@@ -27,6 +29,7 @@ createRoot(document.getElementById('root')!).render(
         <Routes>
             <Route path="/panel" element={<Panel/>}/>
             <Route path="/panel/resources" element={<Resources/>}/>
+            <Route path="/panel/buy" element={<CreateShop/>}/>
             <Route path="/" element={<><Navbar/><Index/></>}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="/logout" element={<Logout/>}/>

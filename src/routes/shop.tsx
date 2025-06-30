@@ -6,8 +6,9 @@ import AdminList from "../components/adminList.tsx";
 import Reinstall from "../components/reinstall.tsx";
 import StatsBar from "../components/statsBar.tsx";
 import Restart from "./shop/restart.tsx";
+import {Link} from "react-router";
 
-function Shop(props: { shop: { "domain": string, "date": string, id: number } }) {
+function Shop(props: { shop: { "domain": string, "date": string, id: number, diskUsage: number } }) {
     const {shop} = props
     const [types, setTypes] = useState<string[]>([])
     const [renewDays, setRenewDays] = useState<number>(95)
@@ -72,8 +73,8 @@ function Shop(props: { shop: { "domain": string, "date": string, id: number } })
                                                               target="_blank"
                                                               className="text-indigo-500 font-bold underline">{shop.id}.tems.pl</a>.
                         Tej domeny nie można zmienić</p>
-                    <a className="justify-self-end w-fit px-4 text-center inline-block rounded border border-indigo-600 bg-indigo-600 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
-                       href="/shop/{{ shop.id }}/domain">Ustawienia domeny</a>
+                    <Link className="justify-self-end w-fit px-4 text-center inline-block rounded border border-indigo-600 bg-indigo-600 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
+                       to="/shop/{{ shop.id }}/domain">Ustawienia domeny</Link>
                 </section>
 
                 <section className="bg-white rounded-lg shadow-sm border border-gray-200 px-6 py-3 flex flex-col gap-3">
@@ -86,9 +87,9 @@ function Shop(props: { shop: { "domain": string, "date": string, id: number } })
 
                 <section className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 flex flex-col gap-3">
                     <strong className="block font-xl">Użycie</strong>
-                    <StatsBar progress={70} name="Dysk"/>
-                    <StatsBar progress={30} name="Ram"/>
-                    <StatsBar progress={50} name="CPU"/>
+                    <StatsBar progress={shop.diskUsage * 100} name="Dysk"/>
+                    {/*<StatsBar progress={shop.diskUsage * 100} name="Ram"/>*/}
+                    {/*<StatsBar progress={shop.diskUsage * 100} name="CPU"/>*/}
                 </section>
 
                 <section className="bg-white rounded-lg shadow-sm border border-gray-200 p-6"><Reinstall shop={shop}
