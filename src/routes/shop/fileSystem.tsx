@@ -158,17 +158,17 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
             <div className="grid grid-cols-1 gap-4 lg:grid-cols-[200px_1fr] lg:gap-8 py-4">
                 <div id="sidebar" className="flex flex-col gap-2 min-h-screen">
                     <input
-                        className="text-center inline-block rounded border border-indigo-600 bg-indigo-600 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500 disabled:bg-gray-300 disabled:border-gray-300"
+                        className="cursor-pointer text-center inline-block rounded border border-indigo-600 bg-indigo-600 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500 disabled:bg-gray-300 disabled:border-gray-300"
                         type="button" value="Zapisz" id="save" disabled={!canEdit} onClick={_ => saveFile()}/>
                     <input
-                        className="text-center inline-block rounded border border-indigo-600 bg-indigo-600 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500 disabled:bg-gray-300 disabled:border-gray-300"
+                        className="cursor-pointer text-center inline-block rounded border border-indigo-600 bg-indigo-600 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500 disabled:bg-gray-300 disabled:border-gray-300"
                         type="button" value="Zamień plik" id="upload" disabled={!canUpload} onClick={() => {
                         if (fileInput.current != null) fileInput.current.click()
                     }}/>
                     <input type="file" className="hidden" ref={fileInput} onChange={(e) => uploadFile(e)}/>
 
 
-                    <div className="p-3 bg-gray-200 rounded-lg flex flex-row gap-2" onClick={() => {
+                    <div className="p-3 bg-gray-200 rounded-lg flex flex-row gap-2 cursor-pointer" onClick={() => {
                         changePath("")
                         setFile("")
                     }}>

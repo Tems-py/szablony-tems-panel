@@ -74,20 +74,20 @@ function Shop(props: { shop: { "domain": string, "date": string, id: number, dis
                                                               className="text-indigo-500 font-bold underline">{shop.id}.tems.pl</a>.
                         Tej domeny nie można zmienić</p>
                     <Link className="justify-self-end w-fit px-4 text-center inline-block rounded border border-indigo-600 bg-indigo-600 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
-                       to="/shop/{{ shop.id }}/domain">Ustawienia domeny</Link>
+                       to={"/shop/" + shop.id + "/domain"}>Ustawienia domeny</Link>
                 </section>
 
                 <section className="bg-white rounded-lg shadow-sm border border-gray-200 px-6 py-3 flex flex-col gap-3">
                     <strong className="block font-xl">Logi</strong>
                     <p className="text-md">Tutaj sprawdzisz czy szablon uruchomił się poprawnie oraz znajdziesz ewentualne błędy uruchamiania</p>
-                    <a href="/shop/{{ shop.id }}/logs"
+                    <a href={"/shop/" + shop.id + "/logs"}
                        className="w-fit mt-4 px-4 text-center inline-block rounded border border-indigo-600 bg-indigo-600 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500">Logi</a>
 
                 </section>
 
                 <section className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 md:p-6 flex flex-col gap-3">
-                    <strong className="block font-xl">Użycie</strong>
-                    <StatsBar progress={shop.diskUsage * 100} name="Dysk"/>
+                    {/*<strong className="block font-xl">Użycie</strong>*/}
+                    {/*<StatsBar progress={shop.diskUsage * 100} name="Dysk"/>*/}
                     {/*<StatsBar progress={shop.diskUsage * 100} name="Ram"/>*/}
                     {/*<StatsBar progress={shop.diskUsage * 100} name="CPU"/>*/}
                 </section>
