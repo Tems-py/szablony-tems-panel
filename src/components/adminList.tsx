@@ -19,11 +19,11 @@ const AdminList = () => {
                 "Authorization": "Bearer " + token
             },
             data: {
-                admin_id: admin_id
+                id: admin_id
             }
         }).then(r => {
             if (r.data.error) {
-                alert(r.data.error)
+                alert(r.data.message)
             }
             getAdmins()
         })
@@ -38,7 +38,7 @@ const AdminList = () => {
             }
         }).then(r => {
             if (r.data.error) {
-                alert(r.data.msg)
+                alert(r.data.message)
             }
             getAdmins()
         })
@@ -51,7 +51,7 @@ const AdminList = () => {
             }
         }).then(r => {
             if (r.data.error) {
-                alert(r.data.msg)
+                alert(r.data.message)
                 return
             }
             setAdmins(r.data)

@@ -42,6 +42,10 @@ function Domain(props: { shop: { "domain": string, "date": string, id: number } 
                 "Authorization": "Bearer " + token
             }
         }).then(r => {
+            if (r.data.error) {
+                alert(r.data.message)
+                return
+            }
             setTxt(r.data.data)
         }).catch(err => {
             alert(err.response.data.message)
