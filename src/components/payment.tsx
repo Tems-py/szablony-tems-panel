@@ -17,7 +17,7 @@ const Payment = (props: {daysHook: [number, React.Dispatch<React.SetStateAction<
     }
 
     return (
-        <div className="flex flex-col w-min gap-2 p-4 bg-gray-50 rounded-lg shadow-lg">
+        <div className="flex flex-col w-min gap-2 p-4 bg-gray-50 rounded-lg shadow-lg h-fit">
             <label className="flex flex-col gap-2">
                 <div>Ilość dni:</div>
                 <input type="range" name="" id="days" min="30" max="365" value={days} onChange={e => changeDays(Number(e.target.value))}/>

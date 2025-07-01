@@ -5,7 +5,7 @@ import axios from "axios";
 import {backendUrl} from "../config.ts";
 
 const Panel: React.FC = () => {
-    const navigator = useNavigate();
+    const navigatorFunction = useNavigate();
     const [adminInvite, setAdminInvite] = useState("")
     const [boughtTemplates, setBoughtTemplates] = useState<string[]>([])
     const [shops, setShops] = useState<{ date: string, domain: string, id: number }[]>([])
@@ -14,7 +14,7 @@ const Panel: React.FC = () => {
     useEffect(() => {
         const token = localStorage.getItem("token");
         if (!token) {
-            navigator("/login", {replace: true});
+            navigatorFunction("/login", {replace: true});
         }
 
         axios.get(backendUrl + "panel", {
@@ -26,7 +26,7 @@ const Panel: React.FC = () => {
             if (response.data.error) {
                 if (response.data.error === "token_expired" || response.data.error === "token_invalid") {
                     localStorage.clear()
-                    navigator("/login", {replace: true});
+                    navigatorFunction("/login", {replace: true});
                     return
                 }
                 alert(response.data.message)
@@ -42,7 +42,7 @@ const Panel: React.FC = () => {
     const buyTemplate = (template: { name: string, price: number, id: number, vishop: boolean }) => {
         const token = localStorage.getItem("token");
         if (!token) {
-            navigator("/login", {replace: true});
+            navigatorFunction("/login", {replace: true});
         }
 
         if (template.vishop) {
@@ -63,6 +63,12 @@ const Panel: React.FC = () => {
                 return;
             }
             window.location.href = response.data.url;
+        })
+    }
+
+    const copyCode = () => {
+        navigator.clipboard.writeText(adminInvite).then(() => {
+          alert("Skopiowano kod zaproszenia do schowka!")
         })
     }
 
@@ -105,7 +111,7 @@ const Panel: React.FC = () => {
                                     </thead>
                                     <tbody className="bg-white divide-y divide-gray-200">
                                     {shops.map((shop) => (
-                                        <tr key={shop.id} onClick={() => navigator("/shop/" + shop.id)}
+                                        <tr key={shop.id} onClick={() => navigatorFunction("/shop/" + shop.id)}
                                             className="cursor-pointer hover:bg-gray-100 hover:text-md transition-all duration-100">
                                             <td className="px-6 py-4 whitespace-nowrap"><span
                                                 className="px-3 py-2 rounded-lg border border-gray-300 hover:border-gray-400 box-border">{shop.domain}</span></td>
@@ -129,6 +135,7 @@ const Panel: React.FC = () => {
                                 administratora.</p>
                             <div className="flex flex-row gap-3 items-center mt-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                     onClick={copyCode}
                                      strokeWidth="1.5"
                                      id="copy_code"
                                      stroke="currentColor"
@@ -161,10 +168,10 @@ const Panel: React.FC = () => {
                                         />
                                         <div className="p-4 flex-1 flex flex-col justify-between w-full">
                                             <h3 className="font-semibold text-lg mb-2 text-gray-800">{template}</h3>
-                                            <button
-                                                className="w-full py-2 px-4 border border-gray-300 bg-white text-gray-800 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-500 cursor-pointer">
+                                            <Link to={`/panel/buy`}
+                                                className="w-full py-2 px-4 border border-gray-300 bg-white text-gray-800 rounded-md hover:bg-gray-100 cursor-pointer">
                                                 Użyj tego szablonu
-                                            </button>
+                                            </Link>
                                         </div>
                                     </div>
                                 ))}
@@ -193,7 +200,7 @@ const Panel: React.FC = () => {
                                             <p className="text-gray-500 mb-4">{template.price == 0 ? "Darmowy" : `${template.price}zł`}</p>
                                             {template.price != 0 && <button
                                                 onClick={() => buyTemplate(template)}
-                                                className="w-full py-2 px-4 bg-gray-800 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-500 pointer">
+                                                className="w-full py-2 px-4 bg-gray-800 text-white rounded-md hover:bg-gray-700 pointer">
                                                 Kup ten szablon
                                             </button>}
                                         </div>

@@ -8,7 +8,7 @@ import Payment from "../components/payment.tsx";
 const CreateShop: React.FC = () => {
     const navigator = useNavigate();
     const [boughtTemplates, setBoughtTemplates] = useState<string[]>([])
-    const [templates, setTemplates] = useState<{ name: string, price: number }[]>([])
+    const [templates, setTemplates] = useState<{ name: string, price: number, id: number, vishop: boolean }[]>([])
     const [error, setError] = useState<string | null>(null)
 
     const [renewDays, setRenewDays] = useState<number>(95)
@@ -16,6 +16,8 @@ const CreateShop: React.FC = () => {
     const [vishopId, setVishopId] = useState<number>(0);
     const [type, setType] = useState<string>("");
     const [rulesAccepted, setRulesAccepted] = useState<boolean>(false);
+
+    const selectedTemplate = templates.find((t) => t.name === type)
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -71,6 +73,36 @@ const CreateShop: React.FC = () => {
         })
     }
 
+    const buyTemplate = () => {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            navigator("/login", {replace: true});
+        }
+
+        const template = templates.find((t) => t.name === type);
+        if (template == null) return;
+
+        if (template.vishop) {
+            alert("Ten szablon jest dostępny do zakupu w oficjalnym panelu vishop")
+            window.location.href = "https://panel.vishop.pl/";
+            return
+        }
+
+        axios.post(backendUrl + "buy_template", {
+            template_id: template.id
+        }, {
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        }).then(response => {
+            if (response.data.error) {
+                alert(response.data.message);
+                return;
+            }
+            window.location.href = response.data.url;
+        })
+    }
+
     return (
         <div className="flex gap-4 flex-col lg:flex-row p-10">
             <Sidebar/>
@@ -78,7 +110,7 @@ const CreateShop: React.FC = () => {
                 className="rounded-lg bg-gray-100 p-10 gap-1 flex-grow flex flex-col gap-4 items-center align-items-center">
                 <h1 className="text-3xl font-bold mb-4">Wykup nowy sklep</h1>
 
-                <div className="flex flex-col gap-6 w-1/2 bg-white p-6 rounded-lg shadow-md">
+                <div className="flex flex-col gap-6 lg:w-1/2 bg-white p-6 rounded-lg shadow-md">
 
                     <label className="block text-s font-medium text-gray-700 bg-white p-3 rounded-lg shadow-md">
                         Domena
@@ -102,13 +134,20 @@ const CreateShop: React.FC = () => {
 
                         </select>
                     </label>
-                    <div className="flex flex-col w-min gap-2 mt-1 bg-white p-3 rounded-lg shadow-md">
-                        <Payment daysHook={[renewDays, setRenewDays]}/>
+                    {selectedTemplate != undefined && selectedTemplate.price != 0 && !boughtTemplates.includes(type) && <div className="p-3 rounded bg-blue-300 border border-blue-700">Jeżeli nie masz wykupionego tego szablonu, kup go <span onClick={() => buyTemplate()} className="underline text-indigo-500">tutaj</span></div>}
+                    <div className="w-full flex flex-col lg:flex-row gap-6 justify-between ">
+                        <div className="flex flex-row w-min gap-2 bg-white p-3 rounded-lg shadow-md">
+                            <Payment daysHook={[renewDays, setRenewDays]}/>
+                        </div>
+                        <div className="flex flex-col bg-white p-3 rounded-lg shadow-md">
+                            <img src={"/img/" + type + ".png"} alt={type} width="200" height="200" className="h-full w-full"/>
+                        </div>
                     </div>
+
                     <label> <input type="checkbox" name="" id="" checked={rulesAccepted}
                                    onChange={() => setRulesAccepted(old => !old)}/> Akceptuję <a
                         href="/regulamin_platnosci"
-                        className="text-indigo-600 hover:text-indigo-500 font-bold">regulamin</a>
+                        className="text-indigo-600 hover:text-indigo-500 font-bold rounded-md">regulamin</a>
                     </label>
 
                     {error != null &&
