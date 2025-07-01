@@ -4,7 +4,6 @@ import {useEffect, useState} from "react";
 import Payment from "../components/payment.tsx";
 import AdminList from "../components/adminList.tsx";
 import Reinstall from "../components/reinstall.tsx";
-import StatsBar from "../components/statsBar.tsx";
 import Restart from "./shop/restart.tsx";
 import {Link} from "react-router";
 
