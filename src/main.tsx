@@ -16,6 +16,7 @@ import Config from "./routes/shop/config.tsx";
 import Restart from "./routes/shop/restart.tsx";
 import Resources from "./routes/resources.tsx";
 import CreateShop from "./routes/createShop.tsx";
+import Plugins from "./routes/plugins.tsx";
 
 const defaultShop = {
     id: Number(0),
@@ -29,6 +30,7 @@ createRoot(document.getElementById('root')!).render(
         <Routes>
             <Route path="/panel" element={<Panel/>}/>
             <Route path="/panel/resources" element={<Resources/>}/>
+            <Route path="/panel/plugins" element={<Plugins/>}/>
             <Route path="/panel/buy" element={<CreateShop/>}/>
             <Route path="/" element={<><Navbar/><Index/></>}/>
             <Route path="/login" element={<Login/>}/>

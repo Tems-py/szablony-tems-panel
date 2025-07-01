@@ -37,6 +37,7 @@ const Logs = (props: { shop: { "domain": string, "date": string, id: number } })
                 {logs !== "" && <MonacoEditor
                     // width="800"
                     // height="600"
+                    height="800px"
                     language="javascript"
                     theme="vs-dark"
                     value={logs}

@@ -9,7 +9,7 @@ const Panel: React.FC = () => {
     const [adminInvite, setAdminInvite] = useState("")
     const [boughtTemplates, setBoughtTemplates] = useState<string[]>([])
     const [shops, setShops] = useState<{ date: string, domain: string, id: number }[]>([])
-    const [templates, setTemplates] = useState<{ name: string, price: number }[]>([])
+    const [templates, setTemplates] = useState<{ name: string, price: number, id: number, vishop: boolean }[]>([])
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -39,15 +39,42 @@ const Panel: React.FC = () => {
         })
     }, [])
 
+    const buyTemplate = (template: { name: string, price: number, id: number, vishop: boolean }) => {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            navigator("/login", {replace: true});
+        }
+
+        if (template.vishop) {
+            alert("Ten szablon jest dostępny do zakupu w oficjalnym panelu vishop")
+            window.location.href = "https://panel.vishop.pl/";
+            return
+        }
+
+        axios.post(backendUrl + "buy_template", {
+            template_id: template.id
+        }, {
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        }).then(response => {
+            if (response.data.error) {
+                alert(response.data.message);
+                return;
+            }
+            window.location.href = response.data.url;
+        })
+    }
+
     return (
-        <div className="flex gap-4 flex-col lg:flex-row p-10">
+        <div className="flex gap-4 flex-col lg:flex-row p-2 md:p-10">
             <Sidebar/>
-            <div className="rounded-lg bg-gray-100 p-10 gap-1 flex-grow">
+            <div className="rounded-lg bg-gray-100 p-2 md:p-10 gap-1 flex-grow">
                 <h1 className="text-3xl font-bold mb-4">Panel szablonów</h1>
 
-                <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    <section className="col-span-2 lg:col-span-3">
-                        <div className="bg-white p-6 rounded-lg shadow-md lg:col-span-2">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                    <section className="md:col-span-2 lg:col-span-3">
+                        <div className="bg-white p-3 md:p-6 rounded-lg shadow-md lg:col-span-2">
                             <h2 className="text-xl font-semibold mb-2 text-gray-800 mb-4">Twoje usługi</h2>
                             <Link to="/panel/buy"
                                   className="py-2 px-4 bg-gray-800 text-white rounded-md hover:bg-gray-700">Kup
@@ -80,10 +107,13 @@ const Panel: React.FC = () => {
                                     {shops.map((shop) => (
                                         <tr key={shop.id} onClick={() => navigator("/shop/" + shop.id)}
                                             className="cursor-pointer hover:bg-gray-100 hover:text-md transition-all duration-100">
-                                            <td className="px-6 py-4 whitespace-nowrap ">{shop.domain}</td>
+                                            <td className="px-6 py-4 whitespace-nowrap"><span
+                                                className="px-3 py-2 rounded-lg border border-gray-300 hover:border-gray-400 box-border">{shop.domain}</span></td>
                                             {/*<td className="px-6 py-4 whitespace-nowrap">{shop.status == 200 ? "Działa" : "Błąd"}</td>*/}
                                             <td className="px-6 py-4 whitespace-nowrap ">{shop.date}</td>
-                                            <td className="px-3 py-2 whitespace-nowrap"><span className="px-3 py-2 rounded-lg border border-transparent hover:border-gray-300 box-border">Zarządzaj</span></td>
+                                            <td className="px-3 py-2 whitespace-nowrap"><span
+                                                className="px-3 py-2 rounded-lg border border-transparent hover:border-gray-300 box-border">Zarządzaj</span>
+                                            </td>
                                         </tr>
                                     ))}
                                     </tbody>
@@ -92,8 +122,8 @@ const Panel: React.FC = () => {
                         </div>
                     </section>
 
-                    <section>
-                        <div className="bg-white p-6 rounded-lg shadow-md">
+                    <section className="w-full">
+                        <div className="bg-white p-3 md:p-6 rounded-lg shadow-md">
                             <h2 className="text-xl font-semibold mb-2 text-gray-800">Kod zaproszenia</h2>
                             <p className="text-gray-600 mb-4">Podaj ten kod osobie, która chce Cię dodać jako
                                 administratora.</p>
@@ -112,11 +142,11 @@ const Panel: React.FC = () => {
                         </div>
                     </section>
 
-                    <section className="lg:col-span-2">
-                        <div className="bg-white p-6 rounded-lg shadow-md lg:col-span-3">
+                    <section className="md:col-span-2">
+                        <div className="bg-white p-3 md:p-6 rounded-lg shadow-md lg:col-span-3">
                             <h2 className="text-xl font-semibold mb-2 text-gray-800">Dostępne szablony</h2>
                             <p className="text-gray-600 mb-4">Darmowe i płatne szablony, których możesz użyć</p>
-                            <div className="flex flex-wrap gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                                 {boughtTemplates.map((template) => (
                                     <div
                                         key={template}
@@ -142,11 +172,11 @@ const Panel: React.FC = () => {
                         </div>
                     </section>
                     <section className="lg:col-span-2">
-                        <div className="bg-white p-6 rounded-lg shadow-md lg:col-span-3">
+                        <div className="bg-white p-3 md:p-6 rounded-lg shadow-md lg:col-span-3">
                             <h2 className="text-xl font-semibold mb-2 text-gray-800">Szablony do zakupu</h2>
                             <p className="text-gray-600 mb-4">Szablony premium, dostępne za opłatą</p>
-                            <div className="flex flex-wrap gap-4">
-                                {templates.map((template, i) => (
+                            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                                {templates.filter((template) => template.price != 0).map((template, i) => (
                                     <div
                                         key={i}
                                         className="border border-gray-200 rounded-lg overflow-hidden flex flex-col items-center text-center bg-white shadow-sm"
@@ -161,10 +191,11 @@ const Panel: React.FC = () => {
                                         <div className="p-4 flex-1 flex flex-col justify-between w-full">
                                             <h3 className="font-semibold text-lg mb-2 text-gray-800">{template.name}</h3>
                                             <p className="text-gray-500 mb-4">{template.price == 0 ? "Darmowy" : `${template.price}zł`}</p>
-                                            <button
-                                                className="w-full py-2 px-4 bg-gray-800 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-500">
+                                            {template.price != 0 && <button
+                                                onClick={() => buyTemplate(template)}
+                                                className="w-full py-2 px-4 bg-gray-800 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-500 pointer">
                                                 Kup ten szablon
-                                            </button>
+                                            </button>}
                                         </div>
                                     </div>
                                 ))}

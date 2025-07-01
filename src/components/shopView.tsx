@@ -59,7 +59,7 @@ const ShopView = (props: { page: ReactNode & { props?: { shop?: any } } }) => {
     return (
         <div className="">
             <DiscordInfo/>
-            <div className="flex flex-col gap-4 lg:flex-row lg:gap-8 h-fit p-4 items-stretch justify-between">
+            <div className="flex flex-col gap-4 lg:flex-row lg:gap-8 h-fit p-1 md:p-4 items-stretch justify-between">
                 <ShopSidebar id={shop.id}/>
                 {React.isValidElement(props.page) ? React.cloneElement(props.page, {shop}) : props.page}
             </div>

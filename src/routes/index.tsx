@@ -59,7 +59,7 @@ const Index: React.FC = () => {
             {/* Hero Section  bg-gradient-to-br from-indigo-500 to-purple-700  */}
 
             <div className="flex align-center">
-                <h1 className="font-bold text-5xl m-auto p-10 border-b-4 border-indigo-600">Hosting szablonów do
+                <h1 className="font-bold text-5xl m-auto p-10 border-b-4 border-indigo-600 text-center">Hosting szablonów do
                     vishop.pl</h1>
             </div>
 
@@ -150,9 +150,9 @@ const Index: React.FC = () => {
             {/*</section>*/}
 
             {/* Templates Showcase Section */}
-            <section className="py-16 md:py-24 bg-gray-100">
+            <section className="py-16 md:py-24 bg-gray-100 border-t-10 border-dotted border-indigo-600  ">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
-                    <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900">Odkryj nasze
+                    <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900 drop-shadow-lg">Odkryj nasze
                         szablony</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                         {templates.map((template, i) => (
@@ -183,9 +183,9 @@ const Index: React.FC = () => {
             </section>
 
             {/* Trusted By Section */}
-            <section className="py-16 md:py-24 bg-white">
+            <section className="py-16 md:py-24 bg-white border-t-10 border-dotted border-indigo-600">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
-                    <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900">Zaufali nam</h2>
+                    <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900 drop-shadow-lg">Zaufali nam</h2>
                     <div
                         className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center justify-center">
                         {shops.map((shop, i) => (
@@ -220,7 +220,7 @@ const Index: React.FC = () => {
             </section>
 
             {/* Call to Action Section */}
-            <section className="py-16 md:py-24 bg-gray-100 text-center">
+            <section className="py-16 md:py-24 bg-gray-100 text-center border-t-10 border-dotted border-indigo-600">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 className="text-4xl md:text-5xl font-bold mb-6 drop-shadow-lg">Gotowy, aby zacząć?</h2>
                     <p className="text-lg md:text-xl max-w-3xl mx-auto opacity-90 mb-10">

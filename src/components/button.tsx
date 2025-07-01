@@ -2,7 +2,7 @@ import {Link} from "react-router";
 import React from "react";
 
 
-function Button(props: { href: string, children?: React.ReactNode, highlighted? : Boolean }) {
+function Button(props: { href: string, children?: React.ReactNode, highlighted? : Boolean, onClick?: () => void }) {
     let {href, children, highlighted } = props;
     if (!highlighted) highlighted = false
     return (

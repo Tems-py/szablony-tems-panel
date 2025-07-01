@@ -50,13 +50,13 @@ function Shop(props: { shop: { "domain": string, "date": string, id: number, dis
 
     return (
         <div className="w-full">
-            <div className="h-full w-full rounded-lg bg-gray-100 p-10 grid grid-cols-1 md:grid-cols-4 gap-4">
-                <section className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 flex flex-col gap-4 col-span-3">
+            <div className="h-full w-full rounded-lg bg-gray-100 p-3 lg:p-10 grid grid-cols-1 md:grid-cols-4 gap-4">
+                <section className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 md:p-6 flex flex-col gap-4 md:col-span-3">
                     <h1 className="font-bold text-3xl">{shop.domain} <span
                         className="text-gray-600 text-xl mx-2 p-2 bg-slate-300 rounded">id: {shop.id}</span></h1>
                     <p>Twój pakiet jest aktywny do <strong className="font-bold">{shop.date}</strong></p>
                 </section>
-                <section className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 row-span-2">
+                <section className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 md:p-6 md:row-span-2">
                     <h2 className="font-xl font-bold mb-2">Przedłuż serwer</h2>
                     <Payment daysHook={[renewDays, setRenewDays]}/>
                     <button
@@ -85,18 +85,18 @@ function Shop(props: { shop: { "domain": string, "date": string, id: number, dis
 
                 </section>
 
-                <section className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 flex flex-col gap-3">
+                <section className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 md:p-6 flex flex-col gap-3">
                     <strong className="block font-xl">Użycie</strong>
                     <StatsBar progress={shop.diskUsage * 100} name="Dysk"/>
                     {/*<StatsBar progress={shop.diskUsage * 100} name="Ram"/>*/}
                     {/*<StatsBar progress={shop.diskUsage * 100} name="CPU"/>*/}
                 </section>
 
-                <section className="bg-white rounded-lg shadow-sm border border-gray-200 p-6"><Reinstall shop={shop}
+                <section className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 md:p-6"><Reinstall shop={shop}
                                                                                                              types={types}/>
                 </section>
-                <section className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 col-span-2"><AdminList/></section>
-                <section className="bg-white rounded-lg shadow-sm border border-gray-200 p-6"><Restart shop={shop}/> </section>
+                <section className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 md:p-6 md:col-span-2"><AdminList/></section>
+                <section className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 md:p-6"><Restart shop={shop}/> </section>
             </div>
         </div>
     )

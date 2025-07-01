@@ -49,7 +49,7 @@ const Config = (props: { shop: { "domain": string, "date": string, id: number } 
 
 
     return (
-        <div className="w-full rounded-lg bg-gray-100 p-10">
+        <div className="w-full rounded-lg bg-gray-100 p-3 lg:p-10">
             <h2 className="font-bold text-3xl">Konfiguracja</h2>
             <div className="flex flex-row justify-between">
                 <p className="my-2">Podstawowa konfiguracja wyglądu szablonu</p>

@@ -64,21 +64,21 @@ const AdminList = () => {
             <p>Osoby dodane jako administratorzy mogą zarządzać szablonem w Twoim imieniu. Nie mogą dodać
                 innych
                 administratorów, ani reinstalować szablonu</p>
-            <div className="flex flex row gap-3 my-3 items-center">
-                <input type="text" className="p-3 rounded border-stone-200 bg-white" id="admin_code"
+            <div className="flex flex-row flex-wrap gap-3 my-3 items-center">
+                <input type="text" className="p-3 rounded border-stone-200 bg-white shadow-md" id="admin_code"
                        onChange={e => setInviteCode(e.target.value)}
                        value={inviteCode}
                        placeholder="Kod zaproszenia"/>
                 <button className="bg-green-400 border-green-700 p-3 rounded hover:bg-green-300"
                         id="add_admin" onClick={addAdmin}>Dodaj administratora
                 </button>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                     strokeWidth="1.5"
-                     stroke="currentColor" className="size-12" id="info">
-                    <path strokeLinecap="round" strokeLinejoin="round"
-                          d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"/>
-                </svg>
-                <span id="hint" className="p-3 rounded bg-indigo-200 -ml-3">Kod zaproszenia możesz znaleźć na stronie głównej <a
+                {/*<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"*/}
+                {/*     strokeWidth="1.5"*/}
+                {/*     stroke="currentColor" className="size-12" id="info">*/}
+                {/*    <path strokeLinecap="round" strokeLinejoin="round"*/}
+                {/*          d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"/>*/}
+                {/*</svg>*/}
+                <span id="hint" className="p-3 rounded bg-indigo-200">Kod zaproszenia możesz znaleźć na stronie głównej <a
                     href="/panel" className="text-indigo-600 underline">panelu</a>.</span>
             </div>
             <div className="relative overflow-x-auto mt-3">

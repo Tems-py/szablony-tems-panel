@@ -1,6 +1,6 @@
 const FileSystem = () => {
     return (
-        <div className="h-full rounded-lg bg-gray-100 p-10 h-full">
+        <div className="h-full rounded-lg bg-gray-100 p-3 lg:p-10 h-full">
             <h2 className="font-bold text-3xl">Edytuj pliki</h2>
             <h3 className="text-xl text-red-900">Jeżeli nie wiesz o co chodzi, to lepiej tego nie ruszaj</h3>
             <p className="" id="currentPath">/</p>
