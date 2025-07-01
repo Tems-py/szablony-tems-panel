@@ -93,6 +93,7 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
         else if (filename.endsWith(".svg")) return "/img/Icons8_flat_picture.svg"
         else if (filename.endsWith(".png")) return "/img/Icons8_flat_picture.svg"
         else if (filename.endsWith(".jpg")) return "/img/Icons8_flat_picture.svg"
+        else if (filename.endsWith(".ico")) return "/img/Icons8_flat_picture.svg"
 
         return "/img/file-icon.svg"
     }
@@ -126,14 +127,15 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
 
     const uploadFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files === null || e.target.files.length === 0) return
-        console.log(e.target.files[0])
-        axios.put(backendUrl + "shop/" + props.shop.id + "/file_system", {
-            path: path + file,
-            file: e.target.files[0]
-        }, {
+
+        const form = new FormData();
+        form.append("path", path + file);
+        form.append("file", e.target.files[0]);
+
+        axios.put(backendUrl + "shop/" + props.shop.id + "/file_system", form, {
             headers: {
                 "Authorization": "Bearer " + token
-            },
+            }
         }).then(r => {
             if (r.data.error) {
                 alert(r.data.message)
