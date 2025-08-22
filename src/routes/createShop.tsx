@@ -146,7 +146,7 @@ const CreateShop: React.FC = () => {
 
                     <label> <input type="checkbox" name="" id="" checked={rulesAccepted}
                                    onChange={() => setRulesAccepted(old => !old)}/> Akceptuję <a
-                        href="/regulamin_platnosci"
+                        href="https://szablony.tems.pl/regulamin_platnosci"
                         className="text-indigo-600 hover:text-indigo-500 font-bold rounded-md">regulamin</a>
                     </label>
 
