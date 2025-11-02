@@ -138,10 +138,11 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
             }
         }).then(r => {
             if (r.data.error) {
-                alert(r.data.message)
+                alert(r.data.error)
                 return
             }
             alert("Plik został zapisany")
+            getFile(file)
         })
     }
 
