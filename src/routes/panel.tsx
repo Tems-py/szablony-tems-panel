@@ -30,12 +30,19 @@ const Panel: React.FC = () => {
                     return
                 }
                 alert(response.data.message)
-
             }
             setAdminInvite(response.data.admin_invite)
             setBoughtTemplates(response.data.bought_templates)
             setShops(response.data.shops)
             setTemplates(response.data.templates)
+        }).catch(err => {
+            console.log(err.response.data)
+            if (err.response.data.error === "token_expired" || err.response.data.error === "token_invalid") {
+                localStorage.clear()
+                navigatorFunction("/login", {replace: true});
+                return
+            }
+            alert(err.response.data.msg)
         })
     }, [])
 

@@ -40,7 +40,8 @@ const ShopView = (props: { page: ReactNode & { props?: { shop?: any } } }) => {
             }
         ).catch(r => {
             const data = r.response.data
-            if (data.error === "token_expired") {
+            console.log(data)
+            if (data.error === "token_expired" || data.error === "invalid_token") {
                 localStorage.clear();
                 navigator("/login", {replace: true});
             } else {

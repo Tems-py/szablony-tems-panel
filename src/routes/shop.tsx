@@ -85,6 +85,8 @@ function Shop(props: { shop: { "domain": string, "date": string, id: number, dis
                 </section>
 
                 <section className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 md:p-6 flex flex-col gap-3">
+                    {/*<strong className="block font-xl">Zmiana wersji Node.js <span className="text-gray-500 text-sm">domyślnie 14</span></strong>*/}
+
                     {/*<strong className="block font-xl">Użycie</strong>*/}
                     {/*<StatsBar progress={shop.diskUsage * 100} name="Dysk"/>*/}
                     {/*<StatsBar progress={shop.diskUsage * 100} name="Ram"/>*/}
