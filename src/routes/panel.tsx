@@ -37,7 +37,7 @@ const Panel: React.FC = () => {
             setTemplates(response.data.templates)
         }).catch(err => {
             console.log(err.response.data)
-            if (err.response.data.error === "token_expired" || err.response.data.error === "token_invalid") {
+            if (err.response.data.error === "token_expired" || err.response.data.error === "invalid_token") {
                 localStorage.clear()
                 navigatorFunction("/login", {replace: true});
                 return
