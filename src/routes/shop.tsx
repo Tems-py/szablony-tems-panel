@@ -115,9 +115,9 @@ function Shop(props: { shop: { "domain": string, "date": string, id: number, dis
 
                 <section
                     className="bg-white rounded-lg shadow-sm border border-gray-200 px-6 py-3 flex flex-col gap-3">
-                    <strong className="block font-xl">Backup</strong>
+                    <strong className="block font-xl">Kopia</strong>
                     <p>
-                        Pobierz backup sklepu:<br/>
+                        Pobierz kopię plików:<br/>
                         <button
                             className="mt-4 px-4 text-center inline-block rounded border border-indigo-600 bg-indigo-600 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
                             onClick={downloadZip}
