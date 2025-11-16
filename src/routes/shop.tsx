@@ -44,6 +44,7 @@ function Shop(props: { shop: { "domain": string, "date": string, id: number, dis
     }
 
     const downloadZip = () => {
+        alert("Rozpoczęto pobieranie... może to chwilę potrwać.")
         axios({
             url: backendUrl + "shop/" + shop.id + "/archive",
             method: 'POST',
