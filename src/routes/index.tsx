@@ -15,7 +15,6 @@ const Index: React.FC = () => {
         })
     }, [])
 
-    // Inline SVG for a checkmark
     const CheckmarkIcon = ({className}: { className?: string }) => (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -29,21 +28,6 @@ const Index: React.FC = () => {
         </svg>
     )
 
-    // Generic placeholder icon for other features
-    // const FeatureIcon = ({ className }: { className?: string }) => (
-    //     <svg
-    //         xmlns="http://www.w3.org/2000/svg"
-    //         fill="none"
-    //         viewBox="0 0 24 24"
-    //         strokeWidth="2"
-    //         stroke="currentColor"
-    //         className={className}
-    //     >
-    //         <circle cx="12" cy="12" r="10" />
-    //         <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3" />
-    //     </svg>
-    // )
-
     const features = [
         {icon: CheckmarkIcon, text: "5 dostępnych szablonów"},
         {icon: CheckmarkIcon, text: "Ochrona Anty-DDOS"},
@@ -56,8 +40,6 @@ const Index: React.FC = () => {
 
     return (
         <div className="flex flex-col min-h-screen bg-gray-50 text-gray-900">
-            {/* Hero Section  bg-gradient-to-br from-indigo-500 to-purple-700  */}
-
             <div className="flex align-center">
                 <h1 className="font-bold text-5xl m-auto p-10 border-b-4 border-indigo-600 text-center">Hosting szablonów do
                     vishop.pl</h1>
@@ -103,54 +85,8 @@ const Index: React.FC = () => {
                 </div>
             </div>
 
-            {/* Features & Pricing Section */}
-            {/*<section id="price" className="py-16 md:py-24 bg-white">*/}
-            {/*    <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">*/}
-            {/*        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900">Co zyskujesz z*/}
-            {/*            nami?</h2>*/}
-            {/*        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">*/}
-            {/*            /!* Features List *!/*/}
-            {/*            <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">*/}
-            {/*                {features.map((feature, i) => (*/}
-            {/*                    <div*/}
-            {/*                        key={i}*/}
-            {/*                        className="p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-200 bg-white"*/}
-            {/*                    >*/}
-            {/*                        <div className="pb-4 flex flex-row items-center gap-4">*/}
-            {/*                            <feature.icon className="h-8 w-8 text-purple-600"/>*/}
-            {/*                            <h3 className="text-xl font-semibold text-gray-800">{feature.text}</h3>*/}
-            {/*                        </div>*/}
-            {/*                        /!* Optional: Add more detailed description for each feature *!/*/}
-            {/*                    </div>*/}
-            {/*                ))}*/}
-            {/*            </div>*/}
-
-            {/*            /!* Pricing Card *!/*/}
-            {/*            <div*/}
-            {/*                className="w-full rounded-2xl border-2 border-purple-600 shadow-xl bg-gradient-to-br from-purple-50 to-pink-50 lg:scale-105">*/}
-            {/*                <div className="text-center p-8 bg-purple-100 rounded-t-2xl">*/}
-            {/*                    <h3 className="text-3xl font-bold text-purple-800">Hosting szablonów</h3>*/}
-            {/*                    <p className="mt-4 text-gray-700">Wszystko, czego potrzebujesz, aby zacząć.</p>*/}
-            {/*                </div>*/}
-            {/*                <div className="p-8 lg:p-12">*/}
-            {/*                    <div className="text-center mb-8">*/}
-            {/*                        <strong className="text-6xl font-extrabold text-gray-900">7zł</strong>*/}
-            {/*                        <span className="text-xl font-medium text-gray-700">/miesiąc</span>*/}
-            {/*                    </div>*/}
-            {/*                    <Link*/}
-            {/*                        to="/login"*/}
-            {/*                        className="inline-flex items-center justify-center w-full py-3 text-lg font-semibold bg-purple-600 hover:bg-purple-700 text-white rounded-full transition-colors duration-300"*/}
-            {/*                    >*/}
-            {/*                        Zaczynajmy*/}
-            {/*                    </Link>*/}
-            {/*                </div>*/}
-            {/*            </div>*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*</section>*/}
-
             {/* Templates Showcase Section */}
-            <section className="py-16 md:py-24 bg-gray-100   ">
+            <section className="py-16 md:py-24 bg-gray-100">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
                     <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900 drop-shadow-lg">Odkryj nasze
                         szablony</h2>
@@ -162,7 +98,7 @@ const Index: React.FC = () => {
                             >
                                 <Link to={template.url} target="_blank" rel="noopener noreferrer" className="block">
                                     <img
-                                        src={`/img/${template.name}.png`} // Using placeholder for images
+                                        src={`/img/${template.name}.png`}
                                         alt={`Zdjęcie ${template.name}`}
                                         width={500}
                                         height={300}
@@ -183,7 +119,7 @@ const Index: React.FC = () => {
             </section>
 
             {/* Trusted By Section */}
-            <section className="py-16 md:py-24 bg-white ">
+            <section className="py-16 md:py-24 bg-white">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
                     <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900 drop-shadow-lg">Zaufali nam</h2>
                     <div
@@ -220,7 +156,7 @@ const Index: React.FC = () => {
             </section>
 
             {/* Call to Action Section */}
-            <section className="py-16 md:py-24 bg-gray-100 text-center ">
+            <section className="py-16 md:py-24 bg-gray-100 text-center">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 className="text-4xl md:text-5xl font-bold mb-6 drop-shadow-lg">Gotowy, aby zacząć?</h2>
                     <p className="text-lg md:text-xl max-w-3xl mx-auto opacity-90 mb-10">

@@ -7,7 +7,7 @@ const DiscordInfo = () => {
         //            target="_blank"> discord.gg</a>
         //     </p>
         // </div>
-        <div className="bg-red-200 px-4 py-3 text-black hidden lg:block">
+        <div className="bg-red-200 dark:bg-red-900 px-4 py-3 text-black dark:text-red-100 hidden lg:block">
             <p className="text-center font-medium">
                 To jest nowy beta panel. Jeżeli coś nie działa poprawnie daj nam znać na naszym <a href="https://discord.gg/ged4vNXqEt" className="inline-block underline text-blue-600"
                              target="_blank"> discordzie</a> i użyj poprzedniego  <a href="https://szablony.tems.pl/panel" className="inline-block underline text-blue-600"

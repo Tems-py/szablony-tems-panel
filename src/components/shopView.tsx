@@ -58,7 +58,7 @@ const ShopView = (props: { page: ReactNode & { props?: { shop?: any } } }) => {
 
 
     return (
-        <div className="">
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
             <DiscordInfo/>
             <div className="flex flex-col gap-4 lg:flex-row lg:gap-8 h-fit p-1 md:p-4 items-stretch justify-between">
                 <ShopSidebar id={shop.id}/>

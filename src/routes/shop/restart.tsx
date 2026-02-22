@@ -42,14 +42,14 @@ function Restart(props: { shop: { "domain": string, "date": string, id: number }
     }
 
     return (
-        <div className="h-full w-full rounded-lg bg-gray-100 p-10">
-            <h1 className="font-bold text-3xl">Restart</h1>
-            <p className="">Zmiany zostaną wgrane tylko po zrestartowaniu (przeładowaniu) szablonu.
+        <div className="h-full w-full rounded-lg bg-gray-100 dark:bg-gray-800 p-10">
+            <h1 className="font-bold text-3xl dark:text-white">Restart</h1>
+            <p className="dark:text-gray-300">Zmiany zostaną wgrane tylko po zrestartowaniu (przeładowaniu) szablonu.
                 Restart trwa zazwyczaj maksymalnie 60 sekund. Jeżeli do tego czasu szablon
                 nie będzie działał sprawdź <Link to={"/shop/" + shop.id + "/logs"}
                                                  className="text-indigo-500 font-bold underline">logi</Link> po więcej
                 informacji</p>
-            {seconds > 0 && <p className="my-2">Możesz zrestartować szablon za: <span
+            {seconds > 0 && <p className="my-2 dark:text-gray-300">Możesz zrestartować szablon za: <span
                 className="font-bold">{seconds.toString()}s</span></p>}
 
             {seconds <= 0 && <button onClick={restart}

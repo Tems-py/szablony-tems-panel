@@ -49,10 +49,10 @@ const Config = (props: { shop: { "domain": string, "date": string, id: number } 
 
 
     return (
-        <div className="w-full rounded-lg bg-gray-100 p-3 lg:p-10">
-            <h2 className="font-bold text-3xl">Konfiguracja</h2>
+        <div className="w-full rounded-lg bg-gray-100 dark:bg-gray-800 p-3 lg:p-10">
+            <h2 className="font-bold text-3xl dark:text-white">Konfiguracja</h2>
             <div className="flex flex-row justify-between">
-                <p className="my-2">Podstawowa konfiguracja wyglądu szablonu. Pamiętaj, że zmiany zostaną wprowadzone dopiero po restarcie szablonu</p>
+                <p className="my-2 dark:text-gray-300">Podstawowa konfiguracja wyglądu szablonu. Pamiętaj, że zmiany zostaną wprowadzone dopiero po restarcie szablonu</p>
                 <button
                     onClick={_ => saveConfig()}
                     className="bg-indigo-600 transition-all duration-200 font-bold text-center inline-block rounded border border-indigo-600  px-10 pt-3 pb-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500">Zapisz

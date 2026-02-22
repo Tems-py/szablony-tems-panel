@@ -30,9 +30,9 @@ const Logs = (props: { shop: { "domain": string, "date": string, id: number } })
 
 
     return (
-        <div className="w-full rounded-lg bg-gray-100 p-10">
-            <h2 className="font-bold text-3xl">Logi</h2>
-            <p className="my-2">Przydatne przy diagnozowaniu błędów z szablonem.</p>
+        <div className="w-full rounded-lg bg-gray-100 dark:bg-gray-800 p-10">
+            <h2 className="font-bold text-3xl dark:text-white">Logi</h2>
+            <p className="my-2 dark:text-gray-300">Przydatne przy diagnozowaniu błędów z szablonem.</p>
             <div id="editor" className="w-full h-full rouded-md">
                 {logs !== "" && <MonacoEditor
                     // width="800"
