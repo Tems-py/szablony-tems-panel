@@ -104,55 +104,55 @@ const CreateShop: React.FC = () => {
     }
 
     return (
-        <div className="flex gap-4 flex-col lg:flex-row p-10">
+        <div className="flex gap-4 flex-col lg:flex-row p-10 min-h-screen bg-gray-50 dark:bg-gray-900">
             <Sidebar/>
             <div
-                className="rounded-lg bg-gray-100 p-10 gap-1 flex-grow flex flex-col gap-4 items-center align-items-center">
-                <h1 className="text-3xl font-bold mb-4">Wykup nowy sklep</h1>
+                className="rounded-lg bg-gray-100 dark:bg-gray-800 p-10 gap-1 flex-grow flex flex-col gap-4 items-center align-items-center">
+                <h1 className="text-3xl font-bold mb-4 dark:text-white">Wykup nowy sklep</h1>
 
-                <div className="flex flex-col gap-6 lg:w-1/2 bg-white p-6 rounded-lg shadow-md">
+                <div className="flex flex-col gap-6 lg:w-1/2 bg-white dark:bg-gray-900 p-6 rounded-lg shadow-md">
 
-                    <label className="block text-s font-medium text-gray-700 bg-white p-3 rounded-lg shadow-md">
+                    <label className="block text-s font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 p-3 rounded-lg shadow-md">
                         Domena
                         <input type="text" name="domain" placeholder="minecraft.pl" value={domain}
                                onChange={(e) => setDomain(e.target.value)}
-                               className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm p-2"/>
+                               className="mt-1 w-full rounded-md border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 shadow-sm sm:text-sm p-2"/>
                     </label>
-                    <label className="block text-s font-medium text-gray-700 bg-white p-3 rounded-lg shadow-md">
+                    <label className="block text-s font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 p-3 rounded-lg shadow-md">
                         ID Vishop
                         <input type="number" name="id" placeholder="0" value={vishopId}
                                onChange={(e) => setVishopId(Number(e.target.value))}
-                               className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm p-2"/>
+                               className="mt-1 w-full rounded-md border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 shadow-sm sm:text-sm p-2"/>
                     </label>
-                    <label className="block text-s font-medium text-gray-700 bg-white p-3 rounded-lg shadow-md">
+                    <label className="block text-s font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 p-3 rounded-lg shadow-md">
                         Rodzaj szablonu
                         <select name="type" value={type} onChange={(e) => setType(e.target.value)}
-                                className="mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm p-2 shadow-sm">
+                                className="mt-1.5 w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 text-gray-700 sm:text-sm p-2 shadow-sm">
                             {templates.map((type, i) =>
                                 <option value={type.name}
                                         key={i}>{type.name}{type.price != 0 && !boughtTemplates.includes(type.name) ? ` - ${type.price}zł` : ""}</option>)}
 
                         </select>
                     </label>
-                    {selectedTemplate != undefined && selectedTemplate.price != 0 && !boughtTemplates.includes(type) && <div className="p-3 rounded bg-blue-300 border border-blue-700">Jeżeli nie masz wykupionego tego szablonu, kup go <span onClick={() => buyTemplate()} className="underline text-indigo-500">tutaj</span></div>}
+                    {selectedTemplate != undefined && selectedTemplate.price != 0 && !boughtTemplates.includes(type) && <div className="p-3 rounded bg-blue-300 dark:bg-blue-900 border border-blue-700 dark:border-blue-500 dark:text-blue-100">Jeżeli nie masz wykupionego tego szablonu, kup go <span onClick={() => buyTemplate()} className="underline text-indigo-500 dark:text-indigo-400">tutaj</span></div>}
                     <div className="w-full flex flex-col lg:flex-row gap-6 justify-between ">
-                        <div className="flex flex-row w-min gap-2 bg-white p-3 rounded-lg shadow-md">
+                        <div className="flex flex-row w-min gap-2 bg-white dark:bg-gray-800 p-3 rounded-lg shadow-md">
                             <Payment daysHook={[renewDays, setRenewDays]}/>
                         </div>
-                        <div className="flex flex-col bg-white p-3 rounded-lg shadow-md">
+                        <div className="flex flex-col bg-white dark:bg-gray-800 p-3 rounded-lg shadow-md">
                             <img src={"/img/" + type + ".png"} alt={type} width="200" height="200" className="h-full w-full"/>
                         </div>
                     </div>
 
-                    <label> <input type="checkbox" name="" id="" checked={rulesAccepted}
+                    <label className="dark:text-gray-200"> <input type="checkbox" name="" id="" checked={rulesAccepted}
                                    onChange={() => setRulesAccepted(old => !old)}/> Akceptuję <a
                         href="https://szablony.tems.pl/regulamin_platnosci"
                         className="text-indigo-600 hover:text-indigo-500 font-bold rounded-md">regulamin</a>
                     </label>
 
                     {error != null &&
-                        <div role="alert" className="rounded border-s-4 border-red-500 bg-red-50 p-4">
-                            <div className="flex items-center gap-2 text-red-800">
+                        <div role="alert" className="rounded border-s-4 border-red-500 bg-red-50 dark:bg-red-950 p-4">
+                            <div className="flex items-center gap-2 text-red-800 dark:text-red-300">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                      className="h-5 w-5">
                                     <path fillRule="evenodd"
@@ -163,7 +163,7 @@ const CreateShop: React.FC = () => {
                                 <strong className="block font-medium">Błąd</strong>
                             </div>
 
-                            <p className="mt-2 text-sm text-red-700">{error}</p>
+                            <p className="mt-2 text-sm text-red-700 dark:text-red-400">{error}</p>
                         </div>
                     }
 
