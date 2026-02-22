@@ -9,6 +9,15 @@
     <meta content="Za jedyne 7 zł/msc możesz mieć swój przepiękny szablon." property="og:description" />
     <meta content="https://embed.com/this-is-the-site-url" property="og:url" />
     <meta content="https://embed.com/embedimage.png" property="og:image" />
+  <script>
+    (function() {
+      var stored = localStorage.getItem('theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (stored === 'dark' || (!stored && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
   </head>
   <body>
     <div id="root"></div>

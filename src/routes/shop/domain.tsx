@@ -53,16 +53,16 @@ function Domain(props: { shop: { "domain": string, "date": string, id: number } 
     }
 
     return (
-        <div className="h-full w-full rounded-lg bg-gray-100 p-10">
-            <h1 className="font-bold text-3xl">Zarządzanie domeną</h1>
-            <h2 className="text-2xl">Aktualna domena: {shop.domain}</h2>
-            <p className="mt-2">Dodaj rekord typu <b>CNAME</b> na domenie <b>{shop.domain}</b><br/><img
+        <div className="h-full w-full rounded-lg bg-gray-100 dark:bg-gray-800 p-10">
+            <h1 className="font-bold text-3xl dark:text-white">Zarządzanie domeną</h1>
+            <h2 className="text-2xl dark:text-gray-200">Aktualna domena: {shop.domain}</h2>
+            <p className="mt-2 dark:text-gray-300">Dodaj rekord typu <b>CNAME</b> na domenie <b>{shop.domain}</b><br/><img
                 src="https://i.imgur.com/amJwOGV.png" alt="przykład cloudflare"/></p>
-            <p className="mt-2">Po dodaniu rekordu, poinformuj o tym nasz system klikając ten przycisk: <br/><input
+            <p className="mt-2 dark:text-gray-300">Po dodaniu rekordu, poinformuj o tym nasz system klikając ten przycisk: <br/><input
                 type="button" value="Dodaj domenę" id="add_domain" onClick={() => addDomain()}
                 className="px-4 text-center inline-block rounded border border-indigo-600 bg-indigo-600 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500 mt-2"/>
             </p>
-            <div className="mt-2">Jeżeli używasz CloudFlare to tyle!<br/>
+            <div className="mt-2 dark:text-gray-300">Jeżeli używasz CloudFlare to tyle!<br/>
                 Jeżeli nie używasz CloudFlare, musisz także ustawić rekord txt (odczekaj 10s przed kliknięciem tego
                 przycisku)<br/>
                 <button id="txt" onClick={() => getTxt()}
@@ -74,8 +74,8 @@ function Domain(props: { shop: { "domain": string, "date": string, id: number } 
             </div>
             <br/>
             <hr/>
-            <h2 className="text-2xl">Zmień domenę</h2>
-            <p className="mt-2">Wpisz nową domenę, którą chcesz ustawić dla tego szablonu. <br/>Uwaga! Po zmianie
+            <h2 className="text-2xl dark:text-gray-200">Zmień domenę</h2>
+            <p className="mt-2 dark:text-gray-300">Wpisz nową domenę, którą chcesz ustawić dla tego szablonu. <br/>Uwaga! Po zmianie
                 domeny, musisz ponownie ustawić rekordy CNAME i TXT!</p>
             <form action={`/shop/${shop.id}/change_domain`} className="flex flex-col" onSubmit={changeDomain}>
                 <input type="text" id="domain" name="domain" value={domain} placeholder={shop.domain}

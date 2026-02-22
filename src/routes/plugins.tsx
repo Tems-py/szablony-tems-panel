@@ -33,30 +33,30 @@ const Plugins: React.FC = () => {
     ]
 
     return (
-        <div className="flex gap-4 flex-col lg:flex-row p-10">
+        <div className="flex gap-4 flex-col lg:flex-row p-10 min-h-screen bg-gray-50 dark:bg-gray-900">
             <Sidebar/>
-            <div className="rounded-lg bg-gray-100 p-10 gap-1 flex-grow flex flex-col gap-4">
-                <h1 className="text-3xl font-bold">Pluginy</h1>
+            <div className="rounded-lg bg-gray-100 dark:bg-gray-800 p-10 gap-1 flex-grow flex flex-col gap-4">
+                <h1 className="text-3xl font-bold dark:text-white">Pluginy</h1>
                 <p className="p-3 bg-indigo-500 text-sky-100 rounded border border-indigo-700 ring-gray-300 flex-grow-0">Pluginów
                     możesz dowolnie używać w na swoim serwerze, dopóki jesteś naszym klientem - posiadasz aktywny
                     plan hostingu. Zakaz rozpowszechniania, sprzedaży i przypisywania sobie autorstwa.</p>
                 <div className="flex flex-row flex-wrap rounded gap-3 justify-around align-items-center">
                     {plugins.map((plugin, index) => (
-                        <div className="p-8 bg-gray-200 w-full flex lg:flex-row flex-col gap-3" key={index}>
-                            <div className="p-3 bg-gray-300 rounded flex flex-col align-center justify-center">
+                        <div className="p-8 bg-gray-200 dark:bg-gray-700 w-full flex lg:flex-row flex-col gap-3" key={index}>
+                            <div className="p-3 bg-gray-300 dark:bg-gray-600 rounded flex flex-col align-center justify-center">
                                 <img src={"/img/" + plugin.image} alt={plugin.image}
                                      className="h-96 w-full object-contain"/>
-                                <h3 className="p-3 font-bold text-xl text-center ">{plugin.title}</h3>
+                                <h3 className="p-3 font-bold text-xl text-center dark:text-white">{plugin.title}</h3>
                                 <a href={plugin.filePath}
                                    className="m-auto w-min h-min text-white p-3 rounded border border-indigo-600 bg-indigo-600 hover:bg-transparent hover:text-indigo-600 focus:outline"
                                    download>Pobierz {plugin.file}</a>
                             </div>
-                            <div className="p-3 bg-gray-300 rounded w-full">{plugin.description}</div>
+                            <div className="p-3 bg-gray-300 dark:bg-gray-600 dark:text-gray-200 rounded w-full">{plugin.description}</div>
                         </div>
                     ))}
 
                     {plugins.length == 0 &&
-                        <p className="text-red-600 p-3 bg-red-200 text-center rounded border border-red-500">Nie masz
+                        <p className="text-red-600 p-3 bg-red-200 dark:bg-red-950 text-center rounded border border-red-500">Nie masz
                             dostępu do tej treści. Musisz posiadać wykupiony plan naszego hostingu</p>}
 
                 </div>

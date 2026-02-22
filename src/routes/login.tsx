@@ -11,7 +11,7 @@ function Login() {
     if (code === null) {
         window.location.href = loginUrl
         return (
-            <div className="flex h-screen w-screen items-center justify-center bg-gray-100">
+            <div className="flex h-screen w-screen items-center justify-center bg-gray-100 dark:bg-gray-900 dark:text-white">
                 <div>
                     Przekierowywanie...
                 </div>
@@ -41,7 +41,7 @@ function Login() {
     }, [])
 
     return (
-        <div className="flex h-screen w-screen items-center justify-center bg-gray-100">
+        <div className="flex h-screen w-screen items-center justify-center bg-gray-100 dark:bg-gray-900 dark:text-white">
             <div>
                 Trwa logowanie...
             </div>

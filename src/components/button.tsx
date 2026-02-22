@@ -8,7 +8,7 @@ function Button(props: { href: string, children?: React.ReactNode, highlighted? 
     return (
         <>
             <Link to={href}
-                  className={`${highlighted ? "underline underline-offset-4 text-decoration-3" : ""} bg-white rounded-lg shadow-sm border border-gray-200 px-6 py-3 transition-all duration-200 font-bold text-center inline-block hover:bg-gray-200 rounded px-10 font-medium text-black `}>{children}</Link>
+                  className={`${highlighted ? "underline underline-offset-4 text-decoration-3" : ""} bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:bg-gray-600 rounded-lg shadow-sm border border-gray-200 px-6 py-3 transition-all duration-200 font-bold text-center inline-block hover:bg-gray-200 rounded px-10 font-medium text-black `}>{children}</Link>
         </>
     )
 }

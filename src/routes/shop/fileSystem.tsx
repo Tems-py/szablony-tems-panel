@@ -152,10 +152,10 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
 
 
     return (
-        <div className="h-full w-full rounded-lg bg-gray-100 p-10 h-full">
-            <h2 className="font-bold text-3xl">Edytuj pliki</h2>
-            <h3 className="text-xl text-red-900">Jeżeli nie wiesz o co chodzi, to lepiej tego nie ruszaj</h3>
-            <p>/{path}{file}</p>
+        <div className="h-full w-full rounded-lg bg-gray-100 dark:bg-gray-800 p-10 h-full">
+            <h2 className="font-bold text-3xl dark:text-white">Edytuj pliki</h2>
+            <h3 className="text-xl text-red-900 dark:text-red-400">Jeżeli nie wiesz o co chodzi, to lepiej tego nie ruszaj</h3>
+            <p className="dark:text-gray-300">/{path}{file}</p>
             <div className="grid grid-cols-1 gap-4 lg:grid-cols-[200px_1fr] lg:gap-8 py-4">
                 <div id="sidebar" className="flex flex-col gap-2 min-h-screen">
                     <input
@@ -169,31 +169,31 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
                     <input type="file" className="hidden" ref={fileInput} onChange={(e) => uploadFile(e)}/>
 
 
-                    <div className="p-3 bg-gray-200 rounded-lg flex flex-row gap-2 cursor-pointer" onClick={() => {
+                    <div className="p-3 bg-gray-200 dark:bg-gray-700 rounded-lg flex flex-row gap-2 cursor-pointer dark:text-gray-200" onClick={() => {
                         changePath("")
                         setFile("")
                     }}>
                         <img className="w-5" src="/img/home.png" alt=""/>
                         Powrót
                     </div>
-                    <div className="p-3 bg-gray-200 rounded-lg">
-                        <h1 className="font-bold text-xl">Foldery</h1>
+                    <div className="p-3 bg-gray-200 dark:bg-gray-700 rounded-lg">
+                        <h1 className="font-bold text-xl dark:text-white">Foldery</h1>
                         <div className="mt-2">
                             {directories.map((directory, i) => (
                                 <div key={i} onClick={() => gotToSubDirectory(directory)}
-                                     className="flex flex-row gap-2 p-2 hover:bg-gray-300 rounded-lg cursor-pointer">
+                                     className="flex flex-row gap-2 p-2 hover:bg-gray-300 dark:hover:bg-gray-600 dark:text-gray-300 rounded-lg cursor-pointer">
                                     <img src="/img/folder.png" alt="" className="h-6 w-6"/>
                                     {directory}
                                 </div>
                             ))}
                         </div>
                     </div>
-                    <div className="p-3 bg-gray-200 rounded-lg">
-                        <h1 className="font-bold text-xl">Pliki</h1>
+                    <div className="p-3 bg-gray-200 dark:bg-gray-700 rounded-lg">
+                        <h1 className="font-bold text-xl dark:text-white">Pliki</h1>
                         <div className="mt-2">
                             {files.map((file, i) => (
                                 <div key={i} onClick={() => changeFile(file)}
-                                     className="flex flex-row gap-2 p-2 hover:bg-gray-300 rounded-lg cursor-pointer">
+                                     className="flex flex-row gap-2 p-2 hover:bg-gray-300 dark:hover:bg-gray-600 dark:text-gray-300 rounded-lg cursor-pointer">
                                     <img src={getExtensionImage(file)} alt="" className="h-6 w-6"/>
                                     {file}
                                 </div>

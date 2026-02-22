@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Button from "./button.tsx";
+import DarkModeToggle from "./darkModeToggle.tsx";
 
 const ShopSidebar = (props: {id: number}) => {
     const {id} = props;
@@ -48,10 +49,10 @@ const ShopSidebar = (props: {id: number}) => {
                     overflow-hidden
                     transition-all duration-300 ease-in-out
                     ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}
-                    
+
                 `}
             >
-                <div className="bg-gray-100 rounded-lg p-4 shadow-md">
+                <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 shadow-md">
                     <div className="flex flex-col gap-3">
                         <Button
                             href="/panel"
@@ -101,13 +102,16 @@ const ShopSidebar = (props: {id: number}) => {
                         >
                             Edytor plików
                         </Button>
+                        <div className="flex justify-center pt-2">
+                            <DarkModeToggle/>
+                        </div>
                     </div>
                 </div>
             </div>
 
             {/* Desktop sidebar - unchanged behavior */}
             <div
-                className="hidden lg:flex h-full rounded-lg bg-gray-100 p-3 lg:p-10 flex-col gap-4"
+                className="hidden lg:flex h-full rounded-lg bg-gray-100 dark:bg-gray-800 p-3 lg:p-10 flex-col gap-4"
                 role="navigation"
                 aria-label="Menu główne sklepu"
             >
@@ -130,6 +134,9 @@ const ShopSidebar = (props: {id: number}) => {
                 <Button href={`/shop/${id}/files`} highlighted={pathName === `/shop/${id}/files`}>
                     Edytor plików
                 </Button>
+                <div className="flex justify-center mt-auto pt-4">
+                    <DarkModeToggle/>
+                </div>
             </div>
         </>
     );

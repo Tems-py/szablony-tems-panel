@@ -38,29 +38,29 @@ function Navbar() {
                         />
                     </svg>
                 </button>
-                <div className={`${isOpen ? "block" : "hidden"} w-full md:block md:w-auto`} id="navbar-default">
-                    <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-700 rounded-lg bg-gray-800 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-gray-900">
-                        {" "}
-                        {/* Darker background for mobile/desktop menu */}
-                        <li>
-                            <a
-                                href="https://discord.gg/ged4vNXqEt"
-                                className="block py-2 pl-3 pr-4 text-gray-300 rounded hover:bg-gray-700 md:hover:bg-transparent md:border-0 md:hover:text-purple-400 md:p-0"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                Discord
-                            </a>
-                        </li>
-                        <li>
-                            <Link
-                                to="/panel"
-                                className="block py-2 pl-3 pr-4 text-gray-300 rounded hover:bg-gray-700 md:hover:bg-transparent md:border-0 md:hover:text-purple-400 md:p-0"
-                            >
-                                Panel
-                            </Link>
-                        </li>
-                    </ul>
+                <div className="flex items-center gap-2">
+                    <div className={`${isOpen ? "block" : "hidden"} w-full md:block md:w-auto`} id="navbar-default">
+                        <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-700 rounded-lg bg-gray-800 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-gray-900">
+                            <li>
+                                <a
+                                    href="https://discord.gg/ged4vNXqEt"
+                                    className="block py-2 pl-3 pr-4 text-gray-300 rounded hover:bg-gray-700 md:hover:bg-transparent md:border-0 md:hover:text-purple-400 md:p-0"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Discord
+                                </a>
+                            </li>
+                            <li>
+                                <Link
+                                    to="/panel"
+                                    className="block py-2 pl-3 pr-4 text-gray-300 rounded hover:bg-gray-700 md:hover:bg-transparent md:border-0 md:hover:text-purple-400 md:p-0"
+                                >
+                                    Panel
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
