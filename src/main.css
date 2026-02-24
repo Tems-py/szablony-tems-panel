@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @variant dark (&:where(.dark, .dark *));
 
+/* Swiper */
 .swiper-wrapper {
     width: 100%;
     height: max-content !important;
@@ -9,9 +10,11 @@
     transition-timing-function: linear !important;
     position: relative;
 }
+
 .swiper-pagination-bullet {
     background: #4f46e5;
 }
+
 .swiper-pagination-bullet-active {
     background: #4f46e5 !important;
 }
@@ -20,9 +23,38 @@ hr {
     height: 0;
     color: inherit;
     border-top-width: 1px;
-    border-color: #e5e7eb
+    border-color: #e2e8f0;
 }
 
 .dark hr {
-    border-color: #374151;
+    border-color: #334155;
+}
+
+/* Micro-animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.18s ease-out;
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.15s ease-out;
 }

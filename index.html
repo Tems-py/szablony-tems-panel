@@ -2,22 +2,45 @@
 <html lang="pl">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Szablony.tems.pl</title>
-    <meta content="Prosty hosting szablonów ViShop.pl" property="og:title" />
-    <meta content="Za jedyne 7 zł/msc możesz mieć swój przepiękny szablon." property="og:description" />
-    <meta content="https://embed.com/this-is-the-site-url" property="og:url" />
-    <meta content="https://embed.com/embedimage.png" property="og:image" />
-  <script>
-    (function() {
-      var stored = localStorage.getItem('theme');
-      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (stored === 'dark' || (!stored && prefersDark)) {
-        document.documentElement.classList.add('dark');
-      }
-    })();
-  </script>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- Primary meta -->
+    <title>szablony.tems.pl - Hosting szablonów vishop.pl</title>
+    <meta name="description" content="Hosting szablonów vishop.pl z pełnym panelem zarządzania, darmową subdomeną i natychmiastowym uruchomieniem. Od 7 zł/miesiąc." />
+
+    <!-- Discord / Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="szablony.tems.pl" />
+    <meta property="og:title" content="szablony.tems.pl - Hosting szablonów vishop.pl" />
+    <meta property="og:description" content="Hosting szablonów vishop z pełnym panelem zarządzania, darmową subdomeną i natychmiastowym uruchomieniem. Od 7 zł/miesiąc." />
+    <meta property="og:url" content="https://szablony.tems.pl" />
+    <meta property="og:image" content="https://szablony.tems.pl/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="pl_PL" />
+
+    <!-- Discord embed accent color (lewy pasek) -->
+    <meta name="theme-color" content="#4f46e5" />
+
+    <!-- Twitter / X card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="szablony.tems.pl - Hosting szablonów vishop.pl" />
+    <meta name="twitter:description" content="Hosting szablonów vishop z pełnym panelem zarządzania, darmową subdomeną i natychmiastowym uruchomieniem. Od 7 zł/miesiąc." />
+    <meta name="twitter:image" content="https://szablony.tems.pl/og.png" />
+
+    <!-- Anty-FOUC: dark mode przed renderem React -->
+    <script>
+      (function () {
+        var stored = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (stored === 'dark' || (!stored && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -1,16 +1,21 @@
 import {Link} from "react-router";
 import React from "react";
 
-
-function Button(props: { href: string, children?: React.ReactNode, highlighted? : Boolean, onClick?: () => void }) {
-    let {href, children, highlighted } = props;
-    if (!highlighted) highlighted = false
+function Button(props: { href: string, children?: React.ReactNode, highlighted?: Boolean, onClick?: () => void }) {
+    const {href, children, highlighted = false, onClick} = props;
     return (
-        <>
-            <Link to={href}
-                  className={`${highlighted ? "underline underline-offset-4 text-decoration-3" : ""} bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:bg-gray-600 rounded-lg shadow-sm border border-gray-200 px-6 py-3 transition-all duration-200 font-bold text-center inline-block hover:bg-gray-200 rounded px-10 font-medium text-black `}>{children}</Link>
-        </>
-    )
+        <Link
+            to={href}
+            onClick={onClick}
+            className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
+                highlighted
+                    ? "bg-indigo-50 text-indigo-700 dark:bg-indigo-950/60 dark:text-indigo-300"
+                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800"
+            }`}
+        >
+            {children}
+        </Link>
+    );
 }
 
-export default Button
+export default Button;
