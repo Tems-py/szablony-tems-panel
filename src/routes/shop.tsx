@@ -195,12 +195,10 @@ function Shop(props: { shop: { "domain": string, "date": string, id: number, dis
                     </div>
                 </div>
 
-                {/* Renew + Reinstall row */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-
-                    {/* Renew */}
+                {/* Renew + Restart — Renew ma stałą szerokość, Restart dopełnia */}
+                <div className="flex flex-col sm:flex-row gap-5 items-stretch">
                     <div
-                        className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 p-5">
+                        className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 p-5 w-full sm:w-72 shrink-0">
                         <h2 className="text-base font-semibold text-slate-900 dark:text-white mb-1">Przedłuż hosting</h2>
                         <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">
                             Wybierz liczbę dni i opłać przedłużenie planu.
@@ -214,22 +212,22 @@ function Shop(props: { shop: { "domain": string, "date": string, id: number, dis
                         </button>
                     </div>
 
-                    {/* Reinstall */}
                     <div
-                        className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 p-5">
-                        <Reinstall shop={shop} types={types}/>
+                        className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 p-5 flex-1">
+                        <Restart shop={shop}/>
                     </div>
                 </div>
 
-                {/* Admin list + Restart row */}
+                {/* Admin list + Reinstall — obok siebie */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
                     <div
                         className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 p-5">
                         <AdminList/>
                     </div>
+
                     <div
-                        className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 p-5">
-                        <Restart shop={shop}/>
+                        className="bg-white dark:bg-slate-900 rounded-xl border border-red-200 dark:border-red-900/50 p-5">
+                        <Reinstall shop={shop} types={types}/>
                     </div>
                 </div>
             </div>

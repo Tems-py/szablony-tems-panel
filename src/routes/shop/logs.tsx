@@ -38,7 +38,7 @@ const Logs = (props: { shop: { "domain": string, "date": string, id: number } })
                 <div>
                     <h1 className="text-xl font-bold text-slate-900 dark:text-white">Logi szablonu</h1>
                     <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-                        Logi uruchamiania — pomocne przy diagnozowaniu błędów. Przewiń na dół, aby zobaczyć
+                        Logi uruchamiania - pomocne przy diagnozowaniu błędów. Przewiń na dół, aby zobaczyć
                         najnowsze wpisy.
                     </p>
                 </div>

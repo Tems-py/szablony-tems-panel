@@ -143,7 +143,7 @@ const CreateShop: React.FC = () => {
                                 className="w-full px-3 py-2.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                             />
                             <p className="text-xs text-slate-400 dark:text-slate-500 mt-1.5">
-                                Znajdziesz je w panelu Vishop — służy do synchronizacji danych sklepu.
+                                Znajdziesz je w panelu Vishop - służy do synchronizacji danych sklepu.
                             </p>
                         </div>
 
@@ -160,7 +160,7 @@ const CreateShop: React.FC = () => {
                             >
                                 {templates.map((t, i) => (
                                     <option value={t.name} key={i}>
-                                        {t.name}{t.price !== 0 && !boughtTemplates.includes(t.name) ? ` — ${t.price} zł` : ""}
+                                        {t.name}{t.price !== 0 && !boughtTemplates.includes(t.name) ? ` - ${t.price} zł` : ""}
                                     </option>
                                 ))}
                             </select>

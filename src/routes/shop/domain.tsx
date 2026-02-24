@@ -148,10 +148,10 @@ function Domain(props: { shop: { "domain": string, "date": string, id: number } 
                         </div>
                         <div className="flex-1">
                             <p className="text-sm font-medium text-slate-900 dark:text-white mb-1">
-                                (Opcjonalnie) Rekord TXT — tylko dla użytkowników bez Cloudflare
+                                (Opcjonalnie) Rekord TXT - tylko dla użytkowników bez Cloudflare
                             </p>
                             <p className="text-sm text-slate-500 dark:text-slate-400 mb-3">
-                                Użytkownicy Cloudflare mogą pominąć ten krok. Dla pozostałych — odczekaj 10 sekund
+                                Użytkownicy Cloudflare mogą pominąć ten krok. Dla pozostałych - odczekaj 10 sekund
                                 po kroku 2, następnie pobierz dane rekordu TXT.
                             </p>
                             <button
