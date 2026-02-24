@@ -12,60 +12,56 @@ const ShopView = (props: { page: ReactNode & { props?: { shop?: any } } }) => {
         domain: "Ładowanie...",
         date: "...",
         diskUsage: 0
-    })
-    const navigator = useNavigate();
+    });
+    const navigatorFunction = useNavigate();
     const token = localStorage.getItem("token");
+
     if (!token) {
-        navigator("/login", {replace: true});
+        navigatorFunction("/login", {replace: true});
     }
 
     const getShopData = () => {
         axios.get(backendUrl + "shop/" + shopId, {
-            headers: {
-                "Authorization": "Bearer " + token
-            }
+            headers: {"Authorization": "Bearer " + token}
         }).then(r => {
-                if (r.data.error) {
-                    alert(r.data.msg)
-                    return
-                }
-
-                setShop(
-                    {
-                        id: Number(shopId),
-                        domain: r.data.domain,
-                        date: r.data.date,
-                        diskUsage: r.data.disk_usage
-                    })
+            if (r.data.error) {
+                alert(r.data.msg);
+                return;
             }
-        ).catch(r => {
-            const data = r.response.data
-            console.log(data)
+            setShop({
+                id: Number(shopId),
+                domain: r.data.domain,
+                date: r.data.date,
+                diskUsage: r.data.disk_usage
+            });
+        }).catch(r => {
+            const data = r.response.data;
             if (data.error === "token_expired" || data.error === "invalid_token") {
                 localStorage.clear();
-                navigator("/login", {replace: true});
+                navigatorFunction("/login", {replace: true});
             } else {
                 alert("Wystąpił błąd podczas pobierania danych sklepu: " + data.message);
             }
-        })
-    }
+        });
+    };
 
     useEffect(() => {
         if (shop.date === "...") {
-            getShopData()
+            getShopData();
         }
-    }, [])
-
+    }, []);
 
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+        <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
             <DiscordInfo/>
-            <div className="flex flex-col gap-4 lg:flex-row lg:gap-8 h-fit p-1 md:p-4 items-stretch justify-between">
+            <div className="flex flex-col gap-4 lg:flex-row lg:gap-5 p-4 items-start">
                 <ShopSidebar id={shop.id}/>
-                {React.isValidElement(props.page) ? React.cloneElement(props.page, {shop}) : props.page}
+                <div className="flex-1 min-w-0">
+                    {React.isValidElement(props.page) ? React.cloneElement(props.page, {shop}) : props.page}
+                </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default ShopView
+export default ShopView;
