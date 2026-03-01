@@ -16,6 +16,12 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
     const [saving, setSaving] = useState(false);
     const [saved, setSaved] = useState(false);
     const fileInput = useRef<any | null>(null);
+    const [createType, setCreateType] = useState<"file" | "directory" | null>(null);
+    const [newItemName, setNewItemName] = useState("");
+    const [creating, setCreating] = useState(false);
+    const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
+    const [deleting, setDeleting] = useState(false);
+    const createInputRef = useRef<HTMLInputElement>(null);
 
     const getData = (currentPath = "") => {
         axios.get(backendUrl + "shop/" + props.shop.id + "/file_system", {
@@ -35,6 +41,7 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
             setCanEdit(false);
             setCanUpload(false);
             setImage(null);
+            setDeleteConfirm(null);
 
             if (monacoEditorRef.current) {
                 monacoEditorRef.current.editor.setValue(r.data);
@@ -136,9 +143,60 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
         });
     };
 
+    const createItem = () => {
+        if (!newItemName.trim()) return;
+        setCreating(true);
+        axios.patch(backendUrl + "shop/" + props.shop.id + "/file_system", {
+            path: path + newItemName.trim(),
+            type: createType
+        }, {
+            headers: {"Authorization": "Bearer " + token}
+        }).then(r => {
+            setCreating(false);
+            if (r.data.error) {
+                alert(r.data.error);
+                return;
+            }
+            setCreateType(null);
+            setNewItemName("");
+            getData(path);
+        });
+    };
+
+    const deleteItem = (itemPath: string) => {
+        setDeleting(true);
+        axios.delete(backendUrl + "shop/" + props.shop.id + "/file_system", {
+            data: {path: itemPath},
+            headers: {"Authorization": "Bearer " + token}
+        }).then(r => {
+            setDeleting(false);
+            setDeleteConfirm(null);
+            if (r.data.error) {
+                alert(r.data.error);
+                return;
+            }
+            if (itemPath === path + file) {
+                setFile("");
+                setCanEdit(false);
+                setCanUpload(false);
+                setImage(null);
+                if (monacoEditorRef.current) {
+                    monacoEditorRef.current.editor.setValue("");
+                }
+            }
+            getData(path);
+        });
+    };
+
     useEffect(() => {
         getData();
     }, []);
+
+    useEffect(() => {
+        if (createType && createInputRef.current) {
+            createInputRef.current.focus();
+        }
+    }, [createType]);
 
     const pathParts = (path + (file || "")).split("/").filter(Boolean);
 
@@ -163,7 +221,7 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
 
                 {/* Sidebar */}
                 <div className="flex flex-col gap-2">
-                    {/* Action buttons */}
+                    {/* Save / Upload buttons */}
                     <div className="flex gap-2">
                         <button
                             onClick={saveFile}
@@ -205,6 +263,66 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
                     </div>
                     <input type="file" className="hidden" ref={fileInput} onChange={uploadFile}/>
 
+                    {/* Create new file / directory */}
+                    {createType === null ? (
+                        <div className="flex gap-2">
+                            <button
+                                onClick={() => { setCreateType("file"); setNewItemName(""); }}
+                                className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                     strokeWidth="1.5" stroke="currentColor" className="w-3.5 h-3.5">
+                                    <path strokeLinecap="round" strokeLinejoin="round"
+                                          d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/>
+                                </svg>
+                                Nowy plik
+                            </button>
+                            <button
+                                onClick={() => { setCreateType("directory"); setNewItemName(""); }}
+                                className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                     strokeWidth="1.5" stroke="currentColor" className="w-3.5 h-3.5">
+                                    <path strokeLinecap="round" strokeLinejoin="round"
+                                          d="M12 10.5v6m3-3H9m4.06-7.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"/>
+                                </svg>
+                                Nowy folder
+                            </button>
+                        </div>
+                    ) : (
+                        <div className="flex flex-col gap-1.5 p-2 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700">
+                            <span className="text-xs text-slate-500 dark:text-slate-400">
+                                {createType === "file" ? "Nowy plik" : "Nowy folder"}{path ? ` w /${path}` : ""}
+                            </span>
+                            <input
+                                ref={createInputRef}
+                                value={newItemName}
+                                onChange={e => setNewItemName(e.target.value)}
+                                onKeyDown={e => {
+                                    if (e.key === "Enter") createItem();
+                                    if (e.key === "Escape") { setCreateType(null); setNewItemName(""); }
+                                }}
+                                placeholder={createType === "file" ? "nazwa.vue" : "nazwa-folderu"}
+                                className="w-full px-2 py-1.5 text-sm rounded-md border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                            />
+                            <div className="flex gap-1.5">
+                                <button
+                                    onClick={createItem}
+                                    disabled={!newItemName.trim() || creating}
+                                    className="flex-1 py-1.5 rounded-md text-xs font-medium bg-indigo-600 hover:bg-indigo-700 text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                >
+                                    {creating ? "Tworzenie..." : "Utwórz"}
+                                </button>
+                                <button
+                                    onClick={() => { setCreateType(null); setNewItemName(""); }}
+                                    className="flex-1 py-1.5 rounded-md text-xs font-medium border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                                >
+                                    Anuluj
+                                </button>
+                            </div>
+                        </div>
+                    )}
+
                     {/* Navigate back to root */}
                     <button
                         onClick={() => {
@@ -231,16 +349,58 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
                                     className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">Foldery</span>
                             </div>
                             <div className="p-1">
-                                {directories.map((directory, i) => (
-                                    <button
-                                        key={i}
-                                        onClick={() => gotToSubDirectory(directory)}
-                                        className="flex items-center gap-2 w-full px-2 py-1.5 rounded-md text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors text-left"
-                                    >
-                                        <img src="/img/folder.png" alt="" className="w-4 h-4 shrink-0"/>
-                                        <span className="truncate">{directory}</span>
-                                    </button>
-                                ))}
+                                {directories.map((directory, i) => {
+                                    const dirPath = path + directory;
+                                    const isConfirming = deleteConfirm === dirPath;
+                                    return (
+                                        <div
+                                            key={i}
+                                            className={`group flex items-center gap-2 w-full px-2 py-1.5 rounded-md text-sm transition-colors ${
+                                                isConfirming
+                                                    ? "bg-red-50 dark:bg-red-950/30 text-red-700 dark:text-red-400"
+                                                    : "text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800"
+                                            }`}
+                                        >
+                                            <button
+                                                onClick={() => !isConfirming && gotToSubDirectory(directory)}
+                                                className="flex items-center gap-2 flex-1 min-w-0 text-left"
+                                            >
+                                                <img src="/img/folder.png" alt="" className="w-4 h-4 shrink-0"/>
+                                                <span className="truncate">{directory}</span>
+                                            </button>
+                                            {isConfirming ? (
+                                                <div className="flex items-center gap-1 shrink-0">
+                                                    <button
+                                                        onClick={() => deleteItem(dirPath)}
+                                                        disabled={deleting}
+                                                        className="px-1.5 py-0.5 text-xs rounded font-medium bg-red-600 hover:bg-red-700 text-white disabled:opacity-50 transition-colors"
+                                                    >
+                                                        Usuń
+                                                    </button>
+                                                    <button
+                                                        onClick={() => setDeleteConfirm(null)}
+                                                        className="px-1.5 py-0.5 text-xs rounded font-medium text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                                                    >
+                                                        ✕
+                                                    </button>
+                                                </div>
+                                            ) : (
+                                                <button
+                                                    onClick={e => { e.stopPropagation(); setDeleteConfirm(dirPath); }}
+                                                    className="opacity-0 group-hover:opacity-100 shrink-0 p-0.5 rounded text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30 transition-all"
+                                                    title="Usuń folder"
+                                                >
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                         viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor"
+                                                         className="w-3.5 h-3.5">
+                                                        <path strokeLinecap="round" strokeLinejoin="round"
+                                                              d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"/>
+                                                    </svg>
+                                                </button>
+                                            )}
+                                        </div>
+                                    );
+                                })}
                             </div>
                         </div>
                     )}
@@ -255,20 +415,60 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
                                     className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">Pliki</span>
                             </div>
                             <div className="p-1">
-                                {files.map((f: string, i) => (
-                                    <button
-                                        key={i}
-                                        onClick={() => changeFile(f)}
-                                        className={`flex items-center gap-2 w-full px-2 py-1.5 rounded-md text-sm transition-colors text-left ${
-                                            file === f
-                                                ? "bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300"
-                                                : "text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800"
-                                        }`}
-                                    >
-                                        <img src={getExtensionIcon(f)} alt="" className="w-4 h-4 shrink-0"/>
-                                        <span className="truncate">{f}</span>
-                                    </button>
-                                ))}
+                                {files.map((f: string, i) => {
+                                    const filePath = path + f;
+                                    const isConfirming = deleteConfirm === filePath;
+                                    return (
+                                        <div
+                                            key={i}
+                                            className={`group flex items-center gap-2 w-full px-2 py-1.5 rounded-md text-sm transition-colors ${
+                                                isConfirming
+                                                    ? "bg-red-50 dark:bg-red-950/30 text-red-700 dark:text-red-400"
+                                                    : file === f
+                                                        ? "bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300"
+                                                        : "text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800"
+                                            }`}
+                                        >
+                                            <button
+                                                onClick={() => !isConfirming && changeFile(f)}
+                                                className="flex items-center gap-2 flex-1 min-w-0 text-left"
+                                            >
+                                                <img src={getExtensionIcon(f)} alt="" className="w-4 h-4 shrink-0"/>
+                                                <span className="truncate">{f}</span>
+                                            </button>
+                                            {isConfirming ? (
+                                                <div className="flex items-center gap-1 shrink-0">
+                                                    <button
+                                                        onClick={() => deleteItem(filePath)}
+                                                        disabled={deleting}
+                                                        className="px-1.5 py-0.5 text-xs rounded font-medium bg-red-600 hover:bg-red-700 text-white disabled:opacity-50 transition-colors"
+                                                    >
+                                                        Usuń
+                                                    </button>
+                                                    <button
+                                                        onClick={() => setDeleteConfirm(null)}
+                                                        className="px-1.5 py-0.5 text-xs rounded font-medium text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                                                    >
+                                                        ✕
+                                                    </button>
+                                                </div>
+                                            ) : (
+                                                <button
+                                                    onClick={e => { e.stopPropagation(); setDeleteConfirm(filePath); }}
+                                                    className="opacity-0 group-hover:opacity-100 shrink-0 p-0.5 rounded text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30 transition-all"
+                                                    title="Usuń plik"
+                                                >
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                         viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor"
+                                                         className="w-3.5 h-3.5">
+                                                        <path strokeLinecap="round" strokeLinejoin="round"
+                                                              d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"/>
+                                                    </svg>
+                                                </button>
+                                            )}
+                                        </div>
+                                    );
+                                })}
                             </div>
                         </div>
                     )}
