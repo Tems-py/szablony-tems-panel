@@ -1,4 +1,4 @@
-import MonacoEditor from 'react-monaco-editor';
+import Editor from '@monaco-editor/react';
 import axios from "axios";
 import {backendUrl} from "../../config.ts";
 import React, {useEffect, useRef, useState} from "react";
@@ -21,6 +21,7 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
     const [creating, setCreating] = useState(false);
     const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
     const [deleting, setDeleting] = useState(false);
+    const [language, setLanguage] = useState("plaintext");
     const createInputRef = useRef<HTMLInputElement>(null);
 
     const getData = (currentPath = "") => {
@@ -87,6 +88,26 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
         });
     };
 
+    const getLanguage = (filename: string): string => {
+        const ext = filename.split(".").pop()?.toLowerCase() ?? "";
+        const map: Record<string, string> = {
+            js: "javascript", jsx: "javascript",
+            ts: "typescript", tsx: "typescript",
+            vue: "html", html: "html", htm: "html",
+            css: "css", scss: "scss", less: "less",
+            json: "json",
+            xml: "xml", svg: "xml",
+            php: "php",
+            md: "markdown",
+            yml: "yaml", yaml: "yaml",
+            sh: "shell",
+            sql: "sql",
+            py: "python",
+            txt: "plaintext",
+        };
+        return map[ext] ?? "plaintext";
+    };
+
     const getExtensionIcon = (filename: string) => {
         if (filename.endsWith(".vue")) return "/img/vue.svg";
         else if (filename.endsWith(".js")) return "/img/js.svg";
@@ -104,6 +125,7 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
     const changeFile = (f: string) => {
         getFile(f);
         setFile(f);
+        setLanguage(getLanguage(f));
     };
 
     const saveFile = () => {
@@ -499,9 +521,9 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
                         </div>
                     ) : (
                         <div className="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700">
-                            <MonacoEditor
+                            <Editor
                                 height="700px"
-                                language="javascript"
+                                language={language}
                                 theme="vs-dark"
                                 options={{
                                     selectOnLineNumbers: true,
@@ -509,7 +531,7 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
                                     padding: {top: 12},
                                     minimap: {enabled: false},
                                 }}
-                                editorDidMount={(editor) => (monacoEditorRef.current = {editor})}
+                                onMount={(editor) => (monacoEditorRef.current = {editor})}
                             />
                         </div>
                     )}
