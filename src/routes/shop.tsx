@@ -177,20 +177,47 @@ function Shop(props: { shop: { "domain": string, "date": string, id: number, dis
                         <button
                             onClick={downloadZip}
                             disabled={downloading}
-                            className="flex items-center gap-1.5 px-3 py-2 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 w-fit disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="flex items-center justify-center gap-2 px-3 py-2 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150 w-fit min-w-[124px] disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             {downloading ? (
                                 <>
-                                    <svg className="w-3.5 h-3.5 animate-spin" xmlns="http://www.w3.org/2000/svg"
-                                         fill="none" viewBox="0 0 24 24">
-                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                                strokeWidth="4"/>
-                                        <path className="opacity-75" fill="currentColor"
-                                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+                                    <svg
+                                        className="w-4 h-4 animate-spin text-emerald-600 dark:text-emerald-400"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        aria-hidden="true"
+                                    >
+                                        <circle cx="12" cy="12" r="9" className="opacity-25" stroke="currentColor" strokeWidth="2.5"/>
+                                        <path
+                                            d="M12 3a9 9 0 019 9"
+                                            stroke="currentColor"
+                                            strokeWidth="2.5"
+                                            strokeLinecap="round"
+                                        />
                                     </svg>
                                     Pobieranie...
                                 </>
-                            ) : "Pobierz ZIP"}
+                            ) : (
+                                <>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth="1.8"
+                                        stroke="currentColor"
+                                        className="w-4 h-4"
+                                        aria-hidden="true"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M12 3v12m0 0l-4-4m4 4l4-4M4.5 17.25v.75A2.25 2.25 0 006.75 20.25h10.5A2.25 2.25 0 0019.5 18v-.75"
+                                        />
+                                    </svg>
+                                    Pobierz ZIP
+                                </>
+                            )}
                         </button>
                     </div>
                 </div>

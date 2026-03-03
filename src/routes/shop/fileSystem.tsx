@@ -248,7 +248,7 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
                         <button
                             onClick={saveFile}
                             disabled={!canEdit || saving}
-                            className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
+                            className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-sm font-medium transition-all duration-150 cursor-pointer ${
                                 saved
                                     ? "bg-emerald-50 border border-emerald-200 dark:bg-emerald-950/30 dark:border-emerald-900 text-emerald-700 dark:text-emerald-400"
                                     : "bg-indigo-600 hover:bg-indigo-700 text-white disabled:bg-slate-200 disabled:dark:bg-slate-800 disabled:text-slate-400 disabled:dark:text-slate-600 disabled:cursor-not-allowed"
@@ -273,7 +273,7 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
                         <button
                             onClick={() => fileInput.current?.click()}
                             disabled={!canUpload}
-                            className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-sm font-medium border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                            className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-sm font-medium border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                  strokeWidth="1.5" stroke="currentColor" className="w-3.5 h-3.5">
@@ -290,7 +290,7 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
                         <div className="flex gap-2">
                             <button
                                 onClick={() => { setCreateType("file"); setNewItemName(""); }}
-                                className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                                className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                      strokeWidth="1.5" stroke="currentColor" className="w-3.5 h-3.5">
@@ -301,7 +301,7 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
                             </button>
                             <button
                                 onClick={() => { setCreateType("directory"); setNewItemName(""); }}
-                                className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                                className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                      strokeWidth="1.5" stroke="currentColor" className="w-3.5 h-3.5">
@@ -331,13 +331,13 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
                                 <button
                                     onClick={createItem}
                                     disabled={!newItemName.trim() || creating}
-                                    className="flex-1 py-1.5 rounded-md text-xs font-medium bg-indigo-600 hover:bg-indigo-700 text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                    className="flex-1 py-1.5 rounded-md text-xs font-medium bg-indigo-600 hover:bg-indigo-700 text-white disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-colors"
                                 >
                                     {creating ? "Tworzenie..." : "Utwórz"}
                                 </button>
                                 <button
                                     onClick={() => { setCreateType(null); setNewItemName(""); }}
-                                    className="flex-1 py-1.5 rounded-md text-xs font-medium border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                                    className="flex-1 py-1.5 rounded-md text-xs font-medium border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors cursor-pointer"
                                 >
                                     Anuluj
                                 </button>
@@ -351,7 +351,7 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
                             changePath("");
                             setFile("");
                         }}
-                        className="flex items-center gap-2 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-sm text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                        className="flex items-center gap-2 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-sm text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"
                              stroke="currentColor" className="w-4 h-4">
@@ -385,7 +385,7 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
                                         >
                                             <button
                                                 onClick={() => !isConfirming && gotToSubDirectory(directory)}
-                                                className="flex items-center gap-2 flex-1 min-w-0 text-left"
+                                                className="flex items-center gap-2 flex-1 min-w-0 text-left cursor-pointer"
                                             >
                                                 <img src="/img/folder.png" alt="" className="w-4 h-4 shrink-0"/>
                                                 <span className="truncate">{directory}</span>
@@ -395,13 +395,13 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
                                                     <button
                                                         onClick={() => deleteItem(dirPath)}
                                                         disabled={deleting}
-                                                        className="px-1.5 py-0.5 text-xs rounded font-medium bg-red-600 hover:bg-red-700 text-white disabled:opacity-50 transition-colors"
+                                                        className="px-1.5 py-0.5 text-xs rounded font-medium bg-red-600 hover:bg-red-700 text-white disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-colors"
                                                     >
                                                         Usuń
                                                     </button>
                                                     <button
                                                         onClick={() => setDeleteConfirm(null)}
-                                                        className="px-1.5 py-0.5 text-xs rounded font-medium text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                                                        className="px-1.5 py-0.5 text-xs rounded font-medium text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors cursor-pointer"
                                                     >
                                                         ✕
                                                     </button>
@@ -409,7 +409,7 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
                                             ) : (
                                                 <button
                                                     onClick={e => { e.stopPropagation(); setDeleteConfirm(dirPath); }}
-                                                    className="opacity-0 group-hover:opacity-100 shrink-0 p-0.5 rounded text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30 transition-all"
+                                                    className="opacity-0 group-hover:opacity-100 shrink-0 p-0.5 rounded text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30 transition-all cursor-pointer"
                                                     title="Usuń folder"
                                                 >
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -453,7 +453,7 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
                                         >
                                             <button
                                                 onClick={() => !isConfirming && changeFile(f)}
-                                                className="flex items-center gap-2 flex-1 min-w-0 text-left"
+                                                className="flex items-center gap-2 flex-1 min-w-0 text-left cursor-pointer"
                                             >
                                                 <img src={getExtensionIcon(f)} alt="" className="w-4 h-4 shrink-0"/>
                                                 <span className="truncate">{f}</span>
@@ -463,13 +463,13 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
                                                     <button
                                                         onClick={() => deleteItem(filePath)}
                                                         disabled={deleting}
-                                                        className="px-1.5 py-0.5 text-xs rounded font-medium bg-red-600 hover:bg-red-700 text-white disabled:opacity-50 transition-colors"
+                                                        className="px-1.5 py-0.5 text-xs rounded font-medium bg-red-600 hover:bg-red-700 text-white disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-colors"
                                                     >
                                                         Usuń
                                                     </button>
                                                     <button
                                                         onClick={() => setDeleteConfirm(null)}
-                                                        className="px-1.5 py-0.5 text-xs rounded font-medium text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                                                        className="px-1.5 py-0.5 text-xs rounded font-medium text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors cursor-pointer"
                                                     >
                                                         ✕
                                                     </button>
@@ -477,7 +477,7 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
                                             ) : (
                                                 <button
                                                     onClick={e => { e.stopPropagation(); setDeleteConfirm(filePath); }}
-                                                    className="opacity-0 group-hover:opacity-100 shrink-0 p-0.5 rounded text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30 transition-all"
+                                                    className="opacity-0 group-hover:opacity-100 shrink-0 p-0.5 rounded text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30 transition-all cursor-pointer"
                                                     title="Usuń plik"
                                                 >
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
