@@ -24,9 +24,11 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
     const [renameTarget, setRenameTarget] = useState<string | null>(null);
     const [renameName, setRenameName] = useState("");
     const [renaming, setRenaming] = useState(false);
+    const [uploadingNew, setUploadingNew] = useState(false);
     const [language, setLanguage] = useState("plaintext");
     const createInputRef = useRef<HTMLInputElement>(null);
     const renameInputRef = useRef<HTMLInputElement>(null);
+    const uploadNewFileInput = useRef<HTMLInputElement>(null);
 
     const getData = (currentPath = "") => {
         axios.get(backendUrl + "shop/" + props.shop.id + "/file_system", {
@@ -163,7 +165,7 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
             headers: {"Authorization": "Bearer " + token}
         }).then(r => {
             if (r.data.error) {
-                alert(r.data.error);
+                alert(r.data.message);
                 return;
             }
             alert("Plik został zastąpiony");
@@ -182,7 +184,7 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
         }).then(r => {
             setCreating(false);
             if (r.data.error) {
-                alert(r.data.error);
+                alert(r.data.message);
                 return;
             }
             setCreateType(null);
@@ -202,7 +204,7 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
         }).then(r => {
             setRenaming(false);
             if (r.data.error) {
-                alert(r.data.error);
+                alert(r.data.message);
                 return;
             }
             if (itemPath === path + file) {
@@ -215,6 +217,47 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
         });
     };
 
+    const uploadNewFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!e.target.files || e.target.files.length === 0) return;
+        const selectedFile = e.target.files[0];
+        e.target.value = "";
+        const filePath = path + selectedFile.name;
+
+        setUploadingNew(true);
+        try {
+            const createR = await axios.patch(backendUrl + "shop/" + props.shop.id + "/file_system", {
+                path: filePath,
+                type: "file"
+            }, {headers: {"Authorization": "Bearer " + token}});
+
+            if (createR.data.error) {
+                alert(createR.data.message);
+                setUploadingNew(false);
+                return;
+            }
+
+            const form = new FormData();
+            form.append("path", filePath);
+            form.append("file", selectedFile);
+
+            const uploadR = await axios.put(backendUrl + "shop/" + props.shop.id + "/file_system", form, {
+                headers: {"Authorization": "Bearer " + token}
+            });
+
+            if (uploadR.data.error) {
+                alert(uploadR.data.message);
+                setUploadingNew(false);
+                return;
+            }
+
+            getData(path);
+            changeFile(selectedFile.name);
+        } catch {
+            alert("Błąd podczas wgrywania pliku");
+        }
+        setUploadingNew(false);
+    };
+
     const deleteItem = (itemPath: string) => {
         setDeleting(true);
         axios.delete(backendUrl + "shop/" + props.shop.id + "/file_system", {
@@ -224,7 +267,7 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
             setDeleting(false);
             setDeleteConfirm(null);
             if (r.data.error) {
-                alert(r.data.error);
+                alert(r.data.message);
                 return;
             }
             if (itemPath === path + file) {
@@ -340,31 +383,51 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
                     </div>
                     <input type="file" className="hidden" ref={fileInput} onChange={uploadFile}/>
 
-                    {/* Create new file / directory */}
+                    {/* Create new file / directory / upload */}
                     {createType === null ? (
-                        <div className="flex gap-2">
+                        <div className="flex flex-col gap-1.5">
+                            <div className="flex gap-2">
+                                <button
+                                    onClick={() => { setCreateType("file"); setNewItemName(""); }}
+                                    className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         strokeWidth="1.5" stroke="currentColor" className="w-3.5 h-3.5">
+                                        <path strokeLinecap="round" strokeLinejoin="round"
+                                              d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/>
+                                    </svg>
+                                    Nowy plik
+                                </button>
+                                <button
+                                    onClick={() => { setCreateType("directory"); setNewItemName(""); }}
+                                    className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         strokeWidth="1.5" stroke="currentColor" className="w-3.5 h-3.5">
+                                        <path strokeLinecap="round" strokeLinejoin="round"
+                                              d="M12 10.5v6m3-3H9m4.06-7.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"/>
+                                    </svg>
+                                    Nowy folder
+                                </button>
+                            </div>
                             <button
-                                onClick={() => { setCreateType("file"); setNewItemName(""); }}
-                                className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+                                onClick={() => uploadNewFileInput.current?.click()}
+                                disabled={uploadingNew}
+                                className="flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                     strokeWidth="1.5" stroke="currentColor" className="w-3.5 h-3.5">
-                                    <path strokeLinecap="round" strokeLinejoin="round"
-                                          d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/>
-                                </svg>
-                                Nowy plik
+                                {uploadingNew ? (
+                                    <svg className="w-3.5 h-3.5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+                                    </svg>
+                                ) : (
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-3.5 h-3.5">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/>
+                                    </svg>
+                                )}
+                                {uploadingNew ? "Wgrywanie..." : "Wgraj plik"}
                             </button>
-                            <button
-                                onClick={() => { setCreateType("directory"); setNewItemName(""); }}
-                                className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer"
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                     strokeWidth="1.5" stroke="currentColor" className="w-3.5 h-3.5">
-                                    <path strokeLinecap="round" strokeLinejoin="round"
-                                          d="M12 10.5v6m3-3H9m4.06-7.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"/>
-                                </svg>
-                                Nowy folder
-                            </button>
+                            <input type="file" className="hidden" ref={uploadNewFileInput} onChange={uploadNewFile}/>
                         </div>
                     ) : (
                         <div className="flex flex-col gap-1.5 p-2 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700">
