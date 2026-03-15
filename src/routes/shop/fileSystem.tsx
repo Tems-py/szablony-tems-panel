@@ -15,6 +15,8 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
     const [canUpload, setCanUpload] = useState(false);
     const [saving, setSaving] = useState(false);
     const [saved, setSaved] = useState(false);
+    const [restarting, setRestarting] = useState(false);
+    const [restartNeeded, setRestartNeeded] = useState(false);
     const fileInput = useRef<any | null>(null);
     const [createType, setCreateType] = useState<"file" | "directory" | null>(null);
     const [newItemName, setNewItemName] = useState("");
@@ -150,7 +152,22 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
                 return;
             }
             setSaved(true);
+            setRestartNeeded(true);
             setTimeout(() => setSaved(false), 2500);
+        });
+    };
+
+    const doRestart = () => {
+        setRestarting(true);
+        axios.post(backendUrl + "shop/" + props.shop.id + "/restart", {}, {
+            headers: {"Authorization": "Bearer " + token}
+        }).then(r => {
+            setRestarting(false);
+            setRestartNeeded(false);
+            alert(r.data.message);
+        }).catch(err => {
+            setRestarting(false);
+            alert(err.response?.data?.message ?? "Błąd restartu");
         });
     };
 
@@ -381,6 +398,30 @@ const FileSystem = (props: { shop: { "domain": string, "date": string, id: numbe
                             Zastąp
                         </button>
                     </div>
+                    {restartNeeded && (
+                        <div className="flex flex-col gap-1">
+                            <button
+                                onClick={doRestart}
+                                disabled={restarting}
+                                className="w-full flex items-center justify-center gap-1.5 py-2 rounded-lg text-sm font-medium border border-amber-200 dark:border-amber-700 text-amber-700 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                {restarting ? (
+                                    <svg className="w-3.5 h-3.5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+                                    </svg>
+                                ) : (
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-3.5 h-3.5">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
+                                    </svg>
+                                )}
+                                {restarting ? "Restartowanie..." : "Restartuj sklep"}
+                            </button>
+                            <p className="text-xs text-amber-600 dark:text-amber-500 text-center">
+                                Zmiany wejdą w życie dopiero po restarcie
+                            </p>
+                        </div>
+                    )}
                     <input type="file" className="hidden" ref={fileInput} onChange={uploadFile}/>
 
                     {/* Create new file / directory / upload */}
