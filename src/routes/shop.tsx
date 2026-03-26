@@ -222,7 +222,7 @@ function Shop(props: { shop: { "domain": string, "date": string, id: number, dis
                     </div>
                 </div>
 
-                {/* Renew + Restart — Renew ma stałą szerokość, Restart dopełnia */}
+                {/* Renew + Restart + Partners */}
                 <div className="flex flex-col sm:flex-row gap-5 items-stretch">
                     <div
                         className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 p-5 w-full sm:w-72 shrink-0">
@@ -239,9 +239,151 @@ function Shop(props: { shop: { "domain": string, "date": string, id: number, dis
                         </button>
                     </div>
 
+                    {/* Restart + Informacje (kolumna) */}
+                    <div className="flex flex-col gap-5 flex-1">
+                        <div
+                            className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 p-5">
+                            <Restart shop={shop}/>
+                        </div>
+
+                        {/* Informacje */}
+                        <div
+                            className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 p-5 flex flex-col gap-4">
+                            <div className="flex items-center gap-2.5">
+                                <div className="w-8 h-8 bg-indigo-50 dark:bg-indigo-950/40 rounded-lg flex items-center justify-center shrink-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         strokeWidth="1.5" stroke="currentColor"
+                                         className="w-4 h-4 text-indigo-600 dark:text-indigo-400">
+                                        <path strokeLinecap="round" strokeLinejoin="round"
+                                              d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/>
+                                    </svg>
+                                </div>
+                                <h2 className="text-base font-semibold text-slate-900 dark:text-white">Informacje</h2>
+                            </div>
+
+                            <a
+                                href="https://wiki.vishop.pl"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-3 p-3 rounded-lg border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-colors duration-150 group"
+                            >
+                                <img
+                                    src="https://www.google.com/s2/favicons?domain=vishop.pl&sz=32"
+                                    alt="Wiki vishop"
+                                    className="w-5 h-5 shrink-0"
+                                />
+                                <div className="flex-1 min-w-0">
+                                    <p className="text-sm font-medium text-slate-900 dark:text-white">Wiki</p>
+                                    <p className="text-xs text-slate-500 dark:text-slate-400">wiki.vishop.pl — dokumentacja i poradniki</p>
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                     strokeWidth="1.5" stroke="currentColor"
+                                     className="w-4 h-4 text-slate-400 shrink-0 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition-colors">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
+                                </svg>
+                            </a>
+
+                            <a
+                                href="https://discord.gg/2VZUEuTjc8"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-3 p-3 rounded-lg border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-colors duration-150 group"
+                            >
+                                <svg viewBox="0 0 24 24" fill="currentColor"
+                                     className="w-5 h-5 shrink-0 text-[#5865F2]">
+                                    <path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+                                </svg>
+                                <div className="flex-1 min-w-0">
+                                    <p className="text-sm font-medium text-slate-900 dark:text-white">Discord</p>
+                                    <p className="text-xs text-slate-500 dark:text-slate-400">FAQ i pomoc techniczna</p>
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                     strokeWidth="1.5" stroke="currentColor"
+                                     className="w-4 h-4 text-slate-400 shrink-0 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition-colors">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    {/* Partners */}
                     <div
-                        className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 p-5 flex-1">
-                        <Restart shop={shop}/>
+                        className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 p-5 flex-1 flex flex-col gap-4">
+                        <div>
+                            <h2 className="text-base font-semibold text-slate-900 dark:text-white mb-1">Usługi partnerskie</h2>
+                            <p className="text-sm text-slate-500 dark:text-slate-400">Polecani partnerzy tems.pl</p>
+                        </div>
+
+                        {/* ivhost */}
+                        <div className="flex flex-col gap-2.5 p-3 rounded-lg border border-slate-100 dark:border-slate-800">
+                            <div className="flex items-center gap-2.5">
+                                <img
+                                    src="https://www.google.com/s2/favicons?domain=ivhost.pl&sz=32"
+                                    alt="ivhost"
+                                    className="w-6 h-6  shrink-0"
+                                />
+                                <div className="flex-1 min-w-0">
+                                    <span className="text-sm font-semibold text-slate-900 dark:text-white">ivhost</span>
+                                    <span className="ml-2 text-xs text-slate-400 dark:text-slate-500">Hosting</span>
+                                </div>
+                            </div>
+                            <p className="text-xs text-slate-500 dark:text-slate-400">
+                                +10% do doładowania przy rejestracji z kodem
+                            </p>
+                            <div className="flex items-center justify-between gap-2 flex-wrap">
+                                <span className="text-sm font-mono font-semibold px-2.5 py-1 rounded-md text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 tracking-wide">
+                                    Kod: tems
+                                </span>
+                                <a
+                                    href="https://panel.ivhost.pl/wallet"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-md transition-colors duration-150 hover:opacity-90"
+                                    style={{backgroundColor: '#6ee7b7', color: '#0f4c35'}}
+                                >
+                                    Przejdź
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         strokeWidth="2" stroke="currentColor" className="w-3 h-3">
+                                        <path strokeLinecap="round" strokeLinejoin="round"
+                                              d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+
+                        {/* simpay */}
+                        <div className="flex flex-col gap-2.5 p-3 rounded-lg border border-slate-100 dark:border-slate-800">
+                            <div className="flex items-center gap-2.5">
+                                <img
+                                    src="https://www.google.com/s2/favicons?domain=simpay.pl&sz=32"
+                                    alt="SimPay"
+                                    className="w-6 h-6  shrink-0"
+                                />
+                                <div className="flex-1 min-w-0">
+                                    <span className="text-sm font-semibold text-slate-900 dark:text-white">SimPay</span>
+                                    <span className="ml-2 text-xs text-slate-400 dark:text-slate-500">Operator płatności</span>
+                                </div>
+                            </div>
+                            <div className="flex items-center justify-between gap-2 flex-wrap">
+                                <span className="text-sm font-mono font-semibold px-2.5 py-1 rounded-md text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 tracking-wide">
+                                    Kod: temspl
+                                </span>
+                                <a
+                                    href="https://panel.simpay.pl/ref/temspl"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-md transition-colors duration-150 hover:opacity-90"
+                                    style={{backgroundColor: '#00d14f', color: '#fff'}}
+                                >
+                                    Przejdź
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         strokeWidth="2" stroke="currentColor" className="w-3 h-3">
+                                        <path strokeLinecap="round" strokeLinejoin="round"
+                                              d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
