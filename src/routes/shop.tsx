@@ -375,7 +375,7 @@ function Shop(props: { shop: { "domain": string, "date": string, id: number, dis
                                     className="flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-md transition-colors duration-150 hover:opacity-90"
                                     style={{backgroundColor: '#00d14f', color: '#fff'}}
                                 >
-                                    Przejdź
+                                    Przejdź (reflink)
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                          strokeWidth="2" stroke="currentColor" className="w-3 h-3">
                                         <path strokeLinecap="round" strokeLinejoin="round"
