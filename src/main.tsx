@@ -1,4 +1,4 @@
-import {BrowserRouter, Routes, Route} from "react-router";
+import {BrowserRouter, Routes, Route, Navigate} from "react-router";
 import {createRoot} from 'react-dom/client'
 import './main.css'
 import Index from "./routes";
@@ -17,6 +17,7 @@ import Restart from "./routes/shop/restart.tsx";
 import Resources from "./routes/resources.tsx";
 import CreateShop from "./routes/createShop.tsx";
 import Plugins from "./routes/plugins.tsx";
+import VishopDocs from "./routes/vishopDocs.tsx";
 
 const defaultShop = {
     id: Number(0),
@@ -31,6 +32,8 @@ createRoot(document.getElementById('root')!).render(
             <Route path="/panel" element={<Panel/>}/>
             <Route path="/panel/resources" element={<Resources/>}/>
             <Route path="/panel/plugins" element={<Plugins/>}/>
+            <Route path="/panel/vishop-docs" element={<VishopDocs/>}/>
+            <Route path="/docs" element={<Navigate to="/panel/vishop-docs" replace/>}/>
             <Route path="/panel/buy" element={<CreateShop/>}/>
             <Route path="/" element={<><Navbar/><Index/></>}/>
             <Route path="/login" element={<Login/>}/>
