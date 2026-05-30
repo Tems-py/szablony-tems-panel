@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd C:\\\\Users\\\\antek\\\\WebstormProjects\\\\szablony-site:*)"
+    ]
+  }
+}
