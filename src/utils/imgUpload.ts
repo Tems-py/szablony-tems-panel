@@ -55,7 +55,7 @@ export function normalizeRedirectCode(code: string): string {
 }
 
 export function buildShortImageUrl(shortCode: string): string {
-    return `${window.location.origin}/img/${shortCode}.png`;
+    return `https://img.tems.pl/${shortCode}.png`;
 }
 
 export async function uploadImageToImgbb(apiKey: string, file: Blob, filename?: string): Promise<UploadedImageResult> {
