@@ -17,7 +17,7 @@ function ImgRedirect() {
                 return null;
             }
 
-            const url = new URL(`https://ibb.co/${imageId}`);
+            const url = new URL(`https://i.ibb.co/${imageId}/obraz-png.png`);
             return url.toString();
         } catch {
             return null;
