@@ -20,6 +20,7 @@ import Plugins from "./routes/plugins.tsx";
 import VishopDocs from "./routes/vishopDocs.tsx";
 import ImgRoute from "./routes/img.tsx";
 import ImgRedirect from "./routes/imgRedirect.tsx";
+import GeneratorRoute from "./routes/generator.tsx";
 
 const defaultShop = {
     id: Number(0),
@@ -39,6 +40,7 @@ createRoot(document.getElementById('root')!).render(
             <Route path="/panel/buy" element={<CreateShop/>}/>
             <Route path="/img" element={<ImgRoute/>}/>
             <Route path="/img/:code" element={<ImgRedirect/>}/>
+            <Route path="/generator" element={<GeneratorRoute/>}/>
             <Route path="/" element={<><Navbar/><Index/></>}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="/logout" element={<Logout/>}/>

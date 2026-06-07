@@ -50,8 +50,12 @@ export function decodeRedirectCode(code: string): string {
     return translateAlphabet(code, targetAlphabet, sourceAlphabet);
 }
 
+export function normalizeRedirectCode(code: string): string {
+    return code.endsWith(".png") ? code.slice(0, -4) : code;
+}
+
 export function buildShortImageUrl(shortCode: string): string {
-    return `${window.location.origin}/img/${shortCode}`;
+    return `${window.location.origin}/img/${shortCode}.png`;
 }
 
 export async function uploadImageToImgbb(apiKey: string, file: Blob, filename?: string): Promise<UploadedImageResult> {

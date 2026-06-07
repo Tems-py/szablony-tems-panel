@@ -1,0 +1,786 @@
+{
+  "groupLabels": {
+    "administrator": "Administrator i sklep",
+    "contact": "Kontakt i reklamacje",
+    "service": "Opis uslugi",
+    "operator": "Operator platnosci",
+    "privacy": "Prywatnosc i RODO"
+  },
+  "fields": [
+    {
+      "id": "admin_name",
+      "label": "Imie i nazwisko lub nazwa podmiotu",
+      "type": "text",
+      "group": "administrator",
+      "required": true,
+      "placeholder": "np. Jan Kowalski",
+      "defaultValue": ""
+    },
+    {
+      "id": "business_description",
+      "label": "Forma dzialalnosci / opis podmiotu",
+      "type": "text",
+      "group": "administrator",
+      "required": true,
+      "placeholder": "np. prowadzacy dzialalnosc nierejestrowana",
+      "defaultValue": ""
+    },
+    {
+      "id": "street_address",
+      "label": "Ulica i numer",
+      "type": "text",
+      "group": "administrator",
+      "required": true,
+      "placeholder": "np. Przykladowa 12",
+      "defaultValue": ""
+    },
+    {
+      "id": "postal_code",
+      "label": "Kod pocztowy",
+      "type": "text",
+      "group": "administrator",
+      "required": true,
+      "placeholder": "np. 00-000",
+      "defaultValue": ""
+    },
+    {
+      "id": "city",
+      "label": "Miejscowosc",
+      "type": "text",
+      "group": "administrator",
+      "required": true,
+      "placeholder": "np. Warszawa",
+      "defaultValue": ""
+    },
+    {
+      "id": "contact_email",
+      "label": "Email kontaktowy",
+      "type": "email",
+      "group": "contact",
+      "required": true,
+      "placeholder": "np. kontakt@twojadomena.pl",
+      "defaultValue": ""
+    },
+    {
+      "id": "service_issue_email",
+      "label": "Email do problemow z nadaniem uslugi",
+      "type": "email",
+      "group": "contact",
+      "required": true,
+      "placeholder": "np. pomoc@twojadomena.pl",
+      "defaultValue": ""
+    },
+    {
+      "id": "complaint_email",
+      "label": "Email do reklamacji",
+      "type": "email",
+      "group": "contact",
+      "required": true,
+      "placeholder": "np. reklamacje@twojadomena.pl",
+      "defaultValue": ""
+    },
+    {
+      "id": "service_assignment_target",
+      "label": "Do czego przypisywana jest usluga",
+      "type": "textarea",
+      "group": "service",
+      "required": true,
+      "placeholder": "np. konta uzytkownika o nazwie podanej przy skladaniu zamowienia na serwerze gry Minecraft",
+      "defaultValue": ""
+    },
+    {
+      "id": "service_duration",
+      "label": "Jak dlugo trwa usluga",
+      "type": "textarea",
+      "group": "service",
+      "required": true,
+      "placeholder": "np. czas okreslony w opisie uslugi",
+      "defaultValue": ""
+    },
+    {
+      "id": "service_removal_behavior",
+      "label": "Co dzieje sie po zakonczeniu uslugi",
+      "type": "textarea",
+      "group": "service",
+      "required": true,
+      "placeholder": "np. jest usuwana z konta uzytkownika",
+      "defaultValue": ""
+    },
+    {
+      "id": "operator_name",
+      "label": "Nazwa operatora platnosci",
+      "type": "text",
+      "group": "operator",
+      "required": true,
+      "placeholder": "np. SimPay",
+      "defaultValue": ""
+    },
+    {
+      "id": "operator_address",
+      "label": "Adres operatora",
+      "type": "text",
+      "group": "operator",
+      "required": false,
+      "placeholder": "np. al. Przykladowa 1, 00-000 Warszawa",
+      "defaultValue": ""
+    },
+    {
+      "id": "operator_nip",
+      "label": "NIP operatora",
+      "type": "text",
+      "group": "operator",
+      "required": false,
+      "placeholder": "np. 0000000000",
+      "defaultValue": ""
+    },
+    {
+      "id": "operator_regon",
+      "label": "REGON operatora",
+      "type": "text",
+      "group": "operator",
+      "required": false,
+      "placeholder": "np. 000000000",
+      "defaultValue": ""
+    },
+    {
+      "id": "operator_contact_url",
+      "label": "Link kontaktowy operatora",
+      "type": "url",
+      "group": "operator",
+      "required": false,
+      "placeholder": "https://...",
+      "defaultValue": ""
+    },
+    {
+      "id": "operator_description",
+      "label": "Opis operatora / dane dodatkowe",
+      "type": "textarea",
+      "group": "operator",
+      "required": false,
+      "placeholder": "np. operator obslugujacy platnosci online i BLIK",
+      "defaultValue": ""
+    },
+    {
+      "id": "processing_purposes",
+      "label": "Cele przetwarzania danych",
+      "type": "textarea",
+      "group": "privacy",
+      "required": true,
+      "placeholder": "",
+      "defaultValue": "realizacji uslug cyfrowych, obslugi uzytkownika, marketingu bezposredniego oraz wypelnienia obowiazkow prawnych"
+    },
+    {
+      "id": "legal_basis",
+      "label": "Podstawa prawna",
+      "type": "text",
+      "group": "privacy",
+      "required": true,
+      "placeholder": "",
+      "defaultValue": "art. 6 ust. 1 lit. a-c i f RODO"
+    },
+    {
+      "id": "data_recipients",
+      "label": "Komu dane moga byc udostepniane",
+      "type": "textarea",
+      "group": "privacy",
+      "required": true,
+      "placeholder": "",
+      "defaultValue": "podmiotom przetwarzajacym je na zlecenie administratora (np. dostawcy hostingu, systemow platnosci), przy zachowaniu odpowiednich zabezpieczen"
+    },
+    {
+      "id": "user_rights",
+      "label": "Prawa uzytkownika",
+      "type": "textarea",
+      "group": "privacy",
+      "required": true,
+      "placeholder": "",
+      "defaultValue": "dostepu do danych, ich sprostowania, usuniecia, ograniczenia przetwarzania, przeniesienia danych, wniesienia sprzeciwu oraz skargi do UODO"
+    },
+    {
+      "id": "data_requirement",
+      "label": "Czy podanie danych jest wymagane",
+      "type": "textarea",
+      "group": "privacy",
+      "required": true,
+      "placeholder": "",
+      "defaultValue": "dobrowolne, ale niezbedne do korzystania z uslug"
+    },
+    {
+      "id": "cookies_scope",
+      "label": "Opis plikow cookies",
+      "type": "textarea",
+      "group": "privacy",
+      "required": true,
+      "placeholder": "",
+      "defaultValue": "w celach technicznych, analitycznych i marketingowych. Uzytkownik moze zarzadzac plikami cookies w ustawieniach przegladarki"
+    },
+    {
+      "id": "data_retention",
+      "label": "Okres przechowywania danych",
+      "type": "textarea",
+      "group": "privacy",
+      "required": true,
+      "placeholder": "",
+      "defaultValue": "przez okres swiadczenia uslug oraz wymagany przepisami prawa lub do czasu cofniecia zgody, jesli dotyczy"
+    }
+  ],
+  "operators": [
+    {
+      "id": "paybylink",
+      "label": "PayByLink",
+      "description": "Pelny wariant oparty na szablonie PBL z polami do uzupelnienia przez uzytkownika.",
+      "templateVariant": "paybylink_full",
+      "titles": {
+        "terms": "Regulamin",
+        "privacy": "Polityka prywatnosci"
+      },
+      "fieldIds": [
+        "admin_name",
+        "business_description",
+        "street_address",
+        "postal_code",
+        "city",
+        "contact_email",
+        "service_issue_email",
+        "complaint_email",
+        "service_assignment_target",
+        "service_duration",
+        "service_removal_behavior",
+        "operator_name",
+        "operator_address",
+        "operator_nip",
+        "operator_regon",
+        "processing_purposes",
+        "legal_basis",
+        "data_recipients",
+        "user_rights",
+        "data_requirement",
+        "cookies_scope",
+        "data_retention"
+      ],
+      "staticValues": {
+        "operator_name": "Systemy Platnicze",
+        "operator_address": "Biurowiec Q22, Jana Pawla II 22, 00-133 Warszawa",
+        "operator_nip": "1182105129",
+        "operator_regon": "360726494"
+      },
+      "blocks": {
+        "terms": [
+          "Zapoznanie sie z tym regulaminem i zaakceptowanie go jest obowiazkowe przed dokonaniem zakupu.",
+          "Zabrania sie dzialan majacych na celu zaklocenie dzialania serwisu.",
+          "Informujemy, ze z chwila rozpoczecia swiadczenia uslugi cyfrowej za zgoda konsumenta, prawo do odstapienia od umowy wygasa.",
+          "W przypadku problemow z nadaniem uslugi nalezy skontaktowac sie z adresem email {{service_issue_email}}.",
+          "Uzytkownik ma prawo reklamowania uslugi w przypadku jej nie otrzymania. Reklamacje nalezy zglosic na adres email {{complaint_email}}. Reklamacje beda rozpatrywane w terminie 14 dni.",
+          "Uslugi przypisywane sa do {{service_assignment_target}} na {{service_duration}}, a po uplywie tego czasu {{service_removal_behavior}}.",
+          "Posrednikiem platnosci jest {{operator_name}}, {{operator_address}}, NIP: {{operator_nip}}, REGON: {{operator_regon}}.",
+          "Administratorem sklepu, danych i odbiorca platnosci jest {{admin_name}}, {{business_description}}, {{street_address}}, {{postal_code}}, {{city}}, adres email - {{contact_email}}."
+        ],
+        "privacy": [
+          "Administratorem danych jest {{admin_name}}, {{business_description}}, {{street_address}}, {{postal_code}}, {{city}}, adres email - {{contact_email}}.",
+          "Dane przetwarzane sa w celu {{processing_purposes}} ({{legal_basis}}).",
+          "Dane moga byc udostepniane {{data_recipients}}.",
+          "Uzytkownik ma prawo do {{user_rights}}.",
+          "Podanie danych jest {{data_requirement}}.",
+          "Strona wykorzystuje pliki cookies {{cookies_scope}}.",
+          "Dane beda przechowywane {{data_retention}}."
+        ]
+      }
+    },
+    {
+      "id": "simpay",
+      "label": "SimPay",
+      "description": "Pelny wariant oparty na szablonie SimPay z osobna sekcja kontaktu do operatora.",
+      "templateVariant": "simpay_full",
+      "titles": {
+        "terms": "Regulamin platnosci",
+        "privacy": "Polityka prywatnosci"
+      },
+      "fieldIds": [
+        "admin_name",
+        "business_description",
+        "street_address",
+        "postal_code",
+        "city",
+        "contact_email",
+        "service_issue_email",
+        "complaint_email",
+        "service_assignment_target",
+        "service_duration",
+        "service_removal_behavior",
+        "processing_purposes",
+        "legal_basis",
+        "data_recipients",
+        "user_rights",
+        "data_requirement",
+        "cookies_scope",
+        "data_retention"
+      ],
+      "staticValues": {
+        "operator_name": "Payments Solution Sp. z o.o.",
+        "operator_address": "ul. Sloneczna 4, 06-212 Krasnosielc",
+        "operator_contact_url": "https://simpay.pl/kontakt",
+        "operator_description": "NIP 7571485069, REGON 369120445, KRS 0000711723"
+      },
+      "blocks": {
+        "terms": [
+          "Zapoznanie sie z tym regulaminem i zaakceptowanie go jest obowiazkowe przed dokonaniem zakupu.",
+          "Zabrania sie dzialan majacych na celu zaklocenie dzialania serwisu.",
+          "Informujemy, ze z chwila rozpoczecia swiadczenia uslugi cyfrowej za zgoda konsumenta, prawo do odstapienia od umowy wygasa.",
+          "W przypadku problemow z nadaniem uslugi nalezy skontaktowac sie z adresem email {{service_issue_email}}.",
+          "Uzytkownik ma prawo reklamowania uslugi w przypadku jej nie otrzymania. Reklamacje nalezy zglosic na adres email {{complaint_email}}. Reklamacje beda rozpatrywane w terminie 14 dni.",
+          "Uslugi przypisywane sa do {{service_assignment_target}}, na {{service_duration}}, a po uplywie tego czasu {{service_removal_behavior}}.",
+          "Administratorem sklepu i odbiorca platnosci jest {{admin_name}} {{business_description}}, pod adresem {{city}}, {{street_address}}, {{postal_code}} | Adres email - {{contact_email}}.",
+          "Operatorem platnosci obslugujacym transakcje jest {{operator_name}}, {{operator_address}}, {{operator_description}}.",
+          "W przypadku wystapienia problemow z realizacja platnosci elektronicznych, Klient moze skontaktowac sie bezposrednio z operatorem platnosci za posrednictwem strony kontaktowej: {{operator_contact_url}}."
+        ],
+        "privacy": [
+          "Administratorem danych jest {{admin_name}}, {{business_description}}, {{street_address}}, {{postal_code}}, {{city}}, adres email - {{contact_email}}.",
+          "Dane przetwarzane sa w celu {{processing_purposes}} ({{legal_basis}}).",
+          "Dane moga byc udostepniane {{data_recipients}}.",
+          "Uzytkownik ma prawo do {{user_rights}}.",
+          "Podanie danych jest {{data_requirement}}.",
+          "Strona wykorzystuje pliki cookies {{cookies_scope}}.",
+          "Dane beda przechowywane {{data_retention}}."
+        ]
+      }
+    },
+    {
+      "id": "cashbill",
+      "label": "CashBill",
+      "description": "Pelny wariant dla operatora CashBill z uzupelnionymi danymi firmy i kontaktem do reklamacji.",
+      "templateVariant": "full_operator",
+      "titles": {
+        "terms": "Regulamin platnosci",
+        "privacy": "Polityka prywatnosci"
+      },
+      "fieldIds": [
+        "admin_name",
+        "business_description",
+        "street_address",
+        "postal_code",
+        "city",
+        "contact_email",
+        "service_issue_email",
+        "complaint_email",
+        "service_assignment_target",
+        "service_duration",
+        "service_removal_behavior",
+        "operator_name",
+        "operator_address",
+        "operator_contact_url",
+        "operator_description",
+        "processing_purposes",
+        "legal_basis",
+        "data_recipients",
+        "user_rights",
+        "data_requirement",
+        "cookies_scope",
+        "data_retention"
+      ],
+      "staticValues": {
+        "operator_name": "CashBill S.A.",
+        "operator_address": "ul. Sobieskiego 2, 40-082 Katowice",
+        "operator_contact_url": "https://www.cashbill.pl/kontakt/",
+        "operator_description": "NIP 6292410801, REGON 241048572, KRS 0000323297"
+      },
+      "blocks": {
+        "terms": [
+          "Zapoznanie sie z tym regulaminem i zaakceptowanie go jest obowiazkowe przed dokonaniem zakupu.",
+          "Zabrania sie dzialan majacych na celu zaklocenie dzialania serwisu.",
+          "Informujemy, ze z chwila rozpoczecia swiadczenia uslugi cyfrowej za zgoda konsumenta, prawo do odstapienia od umowy wygasa.",
+          "W przypadku problemow z nadaniem uslugi nalezy skontaktowac sie z adresem email {{service_issue_email}}.",
+          "Uzytkownik ma prawo reklamowania uslugi w przypadku jej nie otrzymania. Reklamacje nalezy zglosic na adres email {{complaint_email}}. Reklamacje beda rozpatrywane w terminie 14 dni.",
+          "Uslugi przypisywane sa do {{service_assignment_target}} na {{service_duration}}, a po uplywie tego czasu {{service_removal_behavior}}.",
+          "Operatorem platnosci jest {{operator_name}}. Dane operatora: {{operator_address}}. Informacje dodatkowe: {{operator_description}}.",
+          "W przypadku problemow z realizacja platnosci elektronicznych Klient moze skontaktowac sie z operatorem za pomoca: {{operator_contact_url}}.",
+          "Administratorem sklepu, danych i odbiorca platnosci jest {{admin_name}}, {{business_description}}, {{street_address}}, {{postal_code}}, {{city}}, adres email - {{contact_email}}."
+        ],
+        "privacy": [
+          "Administratorem danych jest {{admin_name}}, {{business_description}}, {{street_address}}, {{postal_code}}, {{city}}, adres email - {{contact_email}}.",
+          "Dane przetwarzane sa w celu {{processing_purposes}} ({{legal_basis}}).",
+          "Dane moga byc udostepniane {{data_recipients}}.",
+          "Uzytkownik ma prawo do {{user_rights}}.",
+          "Podanie danych jest {{data_requirement}}.",
+          "Strona wykorzystuje pliki cookies {{cookies_scope}}.",
+          "Dane beda przechowywane {{data_retention}}."
+        ]
+      }
+    },
+    {
+      "id": "dpay",
+      "label": "dPay",
+      "description": "Pelny wariant dla operatora dPay z uzupelnionymi danymi firmy i kontaktem operatora.",
+      "templateVariant": "full_operator",
+      "titles": {
+        "terms": "Regulamin platnosci",
+        "privacy": "Polityka prywatnosci"
+      },
+      "fieldIds": [
+        "admin_name",
+        "business_description",
+        "street_address",
+        "postal_code",
+        "city",
+        "contact_email",
+        "service_issue_email",
+        "complaint_email",
+        "service_assignment_target",
+        "service_duration",
+        "service_removal_behavior",
+        "operator_name",
+        "operator_address",
+        "operator_contact_url",
+        "operator_description",
+        "processing_purposes",
+        "legal_basis",
+        "data_recipients",
+        "user_rights",
+        "data_requirement",
+        "cookies_scope",
+        "data_retention"
+      ],
+      "staticValues": {
+        "operator_name": "Payments Lab sp. z o.o. (dPay)",
+        "operator_address": "ul. Chmielna 2/31, 00-020 Warszawa",
+        "operator_contact_url": "https://dpay.pl/pl/contact",
+        "operator_description": "NIP 5252825300, KRS 0000845085"
+      },
+      "blocks": {
+        "terms": [
+          "Zapoznanie sie z tym regulaminem i zaakceptowanie go jest obowiazkowe przed dokonaniem zakupu.",
+          "Zabrania sie dzialan majacych na celu zaklocenie dzialania serwisu.",
+          "Informujemy, ze z chwila rozpoczecia swiadczenia uslugi cyfrowej za zgoda konsumenta, prawo do odstapienia od umowy wygasa.",
+          "W przypadku problemow z nadaniem uslugi nalezy skontaktowac sie z adresem email {{service_issue_email}}.",
+          "Uzytkownik ma prawo reklamowania uslugi w przypadku jej nie otrzymania. Reklamacje nalezy zglosic na adres email {{complaint_email}}. Reklamacje beda rozpatrywane w terminie 14 dni.",
+          "Uslugi przypisywane sa do {{service_assignment_target}} na {{service_duration}}, a po uplywie tego czasu {{service_removal_behavior}}.",
+          "Operatorem platnosci jest {{operator_name}}. Dane operatora: {{operator_address}}. Informacje dodatkowe: {{operator_description}}.",
+          "W przypadku problemow z realizacja platnosci elektronicznych Klient moze skontaktowac sie z operatorem za pomoca: {{operator_contact_url}}.",
+          "Administratorem sklepu, danych i odbiorca platnosci jest {{admin_name}}, {{business_description}}, {{street_address}}, {{postal_code}}, {{city}}, adres email - {{contact_email}}."
+        ],
+        "privacy": [
+          "Administratorem danych jest {{admin_name}}, {{business_description}}, {{street_address}}, {{postal_code}}, {{city}}, adres email - {{contact_email}}.",
+          "Dane przetwarzane sa w celu {{processing_purposes}} ({{legal_basis}}).",
+          "Dane moga byc udostepniane {{data_recipients}}.",
+          "Uzytkownik ma prawo do {{user_rights}}.",
+          "Podanie danych jest {{data_requirement}}.",
+          "Strona wykorzystuje pliki cookies {{cookies_scope}}.",
+          "Dane beda przechowywane {{data_retention}}."
+        ]
+      }
+    },
+    {
+      "id": "icehost",
+      "label": "IceHost",
+      "description": "Pelny wariant dla IceHost oparty o rozliczenia przez portfel hostingu.",
+      "templateVariant": "full_operator",
+      "infoMessage": "IceHost nie jest operatorem platnosci, tylko hostingiem z integracja VIshop. W typowym scenariuszu osobny regulamin platnosci nie jest tu wymagany.",
+      "titles": {
+        "terms": "Regulamin platnosci",
+        "privacy": "Polityka prywatnosci"
+      },
+      "fieldIds": [
+        "admin_name",
+        "business_description",
+        "street_address",
+        "postal_code",
+        "city",
+        "contact_email",
+        "service_issue_email",
+        "complaint_email",
+        "service_assignment_target",
+        "service_duration",
+        "service_removal_behavior",
+        "operator_name",
+        "operator_address",
+        "operator_contact_url",
+        "operator_description",
+        "processing_purposes",
+        "legal_basis",
+        "data_recipients",
+        "user_rights",
+        "data_requirement",
+        "cookies_scope",
+        "data_retention"
+      ],
+      "staticValues": {
+        "operator_name": "SkyPass Solutions Sp. z o.o. (IceHost)",
+        "operator_address": "Al. Jana Pawla II 43A/37B, 01-001 Warszawa",
+        "operator_contact_url": "https://icehost.pl/pl/kontakt",
+        "operator_description": "KRS 0001006777, NIP 5273032183, REGON 523899429"
+      },
+      "blocks": {
+        "terms": [
+          "Zapoznanie sie z tym regulaminem i zaakceptowanie go jest obowiazkowe przed dokonaniem zakupu.",
+          "Zabrania sie dzialan majacych na celu zaklocenie dzialania serwisu.",
+          "Informujemy, ze z chwila rozpoczecia swiadczenia uslugi cyfrowej za zgoda konsumenta, prawo do odstapienia od umowy wygasa.",
+          "W przypadku problemow z nadaniem uslugi nalezy skontaktowac sie z adresem email {{service_issue_email}}.",
+          "Uzytkownik ma prawo reklamowania uslugi w przypadku jej nie otrzymania. Reklamacje nalezy zglosic na adres email {{complaint_email}}. Reklamacje beda rozpatrywane w terminie 14 dni.",
+          "Uslugi przypisywane sa do {{service_assignment_target}} na {{service_duration}}, a po uplywie tego czasu {{service_removal_behavior}}.",
+          "Rozliczenia realizowane sa za posrednictwem portfela hostingu {{operator_name}}, {{operator_address}}, {{operator_description}}.",
+          "W przypadku problemow z realizacja zasilenia portfela lub uslug hostingu Klient moze skontaktowac sie z IceHost za pomoca: {{operator_contact_url}}.",
+          "Administratorem sklepu, danych i odbiorca platnosci jest {{admin_name}}, {{business_description}}, {{street_address}}, {{postal_code}}, {{city}}, adres email - {{contact_email}}."
+        ],
+        "privacy": [
+          "Administratorem danych jest {{admin_name}}, {{business_description}}, {{street_address}}, {{postal_code}}, {{city}}, adres email - {{contact_email}}.",
+          "Dane przetwarzane sa w celu {{processing_purposes}} ({{legal_basis}}).",
+          "Dane moga byc udostepniane {{data_recipients}}.",
+          "Uzytkownik ma prawo do {{user_rights}}.",
+          "Podanie danych jest {{data_requirement}}.",
+          "Strona wykorzystuje pliki cookies {{cookies_scope}}.",
+          "Dane beda przechowywane {{data_retention}}."
+        ]
+      }
+    },
+    {
+      "id": "ivhost",
+      "label": "IVHost",
+      "description": "Pelny wariant dla IVHost oparty o rozliczenia przez portfel hostingu.",
+      "templateVariant": "full_operator",
+      "infoMessage": "IVhost nie jest operatorem platnosci, tylko hostingiem z integracja VIshop. W typowym scenariuszu osobny regulamin platnosci nie jest tu wymagany.",
+      "titles": {
+        "terms": "Regulamin platnosci",
+        "privacy": "Polityka prywatnosci"
+      },
+      "fieldIds": [
+        "admin_name",
+        "business_description",
+        "street_address",
+        "postal_code",
+        "city",
+        "contact_email",
+        "service_issue_email",
+        "complaint_email",
+        "service_assignment_target",
+        "service_duration",
+        "service_removal_behavior",
+        "operator_name",
+        "operator_address",
+        "operator_contact_url",
+        "operator_description",
+        "processing_purposes",
+        "legal_basis",
+        "data_recipients",
+        "user_rights",
+        "data_requirement",
+        "cookies_scope",
+        "data_retention"
+      ],
+      "staticValues": {
+        "operator_name": "IVsystems Mikolaj Gawendowicz (IVhost)",
+        "operator_address": "ul. Wladyslawa Lokietka 5/2, 70-254 Szczecin",
+        "operator_contact_url": "https://ivhost.pl/kontakt",
+        "operator_description": "NIP 9552578078, REGON 527599397"
+      },
+      "blocks": {
+        "terms": [
+          "Zapoznanie sie z tym regulaminem i zaakceptowanie go jest obowiazkowe przed dokonaniem zakupu.",
+          "Zabrania sie dzialan majacych na celu zaklocenie dzialania serwisu.",
+          "Informujemy, ze z chwila rozpoczecia swiadczenia uslugi cyfrowej za zgoda konsumenta, prawo do odstapienia od umowy wygasa.",
+          "W przypadku problemow z nadaniem uslugi nalezy skontaktowac sie z adresem email {{service_issue_email}}.",
+          "Uzytkownik ma prawo reklamowania uslugi w przypadku jej nie otrzymania. Reklamacje nalezy zglosic na adres email {{complaint_email}}. Reklamacje beda rozpatrywane w terminie 14 dni.",
+          "Uslugi przypisywane sa do {{service_assignment_target}} na {{service_duration}}, a po uplywie tego czasu {{service_removal_behavior}}.",
+          "Rozliczenia realizowane sa za posrednictwem portfela hostingu {{operator_name}}, {{operator_address}}, {{operator_description}}.",
+          "W przypadku problemow z realizacja zasilenia portfela lub uslug hostingu Klient moze skontaktowac sie z IVhost za pomoca: {{operator_contact_url}}.",
+          "Administratorem sklepu, danych i odbiorca platnosci jest {{admin_name}}, {{business_description}}, {{street_address}}, {{postal_code}}, {{city}}, adres email - {{contact_email}}."
+        ],
+        "privacy": [
+          "Administratorem danych jest {{admin_name}}, {{business_description}}, {{street_address}}, {{postal_code}}, {{city}}, adres email - {{contact_email}}.",
+          "Dane przetwarzane sa w celu {{processing_purposes}} ({{legal_basis}}).",
+          "Dane moga byc udostepniane {{data_recipients}}.",
+          "Uzytkownik ma prawo do {{user_rights}}.",
+          "Podanie danych jest {{data_requirement}}.",
+          "Strona wykorzystuje pliki cookies {{cookies_scope}}.",
+          "Dane beda przechowywane {{data_retention}}."
+        ]
+      }
+    },
+    {
+      "id": "paypal",
+      "label": "PayPal",
+      "description": "Pelny wariant dla operatora PayPal z uzupelnionymi danymi podmiotu obslugujacego platnosci w Europie.",
+      "templateVariant": "full_operator",
+      "infoMessage": "Przy PayPal w typowym wdrozeniu VIshop osobny regulamin platnosci zwykle nie jest wymagany. W wielu przypadkach wystarcza poprawne dane sprzedawcy oraz polityka prywatnosci.",
+      "titles": {
+        "terms": "Regulamin platnosci",
+        "privacy": "Polityka prywatnosci"
+      },
+      "fieldIds": [
+        "admin_name",
+        "business_description",
+        "street_address",
+        "postal_code",
+        "city",
+        "contact_email",
+        "service_issue_email",
+        "complaint_email",
+        "service_assignment_target",
+        "service_duration",
+        "service_removal_behavior",
+        "operator_name",
+        "operator_address",
+        "operator_contact_url",
+        "operator_description",
+        "processing_purposes",
+        "legal_basis",
+        "data_recipients",
+        "user_rights",
+        "data_requirement",
+        "cookies_scope",
+        "data_retention"
+      ],
+      "staticValues": {
+        "operator_name": "PayPal (Europe) S.a r.l. et Cie, S.C.A.",
+        "operator_address": "22-24 Boulevard Royal, L-2449 Luxembourg",
+        "operator_contact_url": "https://www.paypal.com/pl/webapps/mpp/about",
+        "operator_description": "R.C.S. Luxembourg B 118 349, VAT LU22046007"
+      },
+      "blocks": {
+        "terms": [
+          "Zapoznanie sie z tym regulaminem i zaakceptowanie go jest obowiazkowe przed dokonaniem zakupu.",
+          "Zabrania sie dzialan majacych na celu zaklocenie dzialania serwisu.",
+          "Informujemy, ze z chwila rozpoczecia swiadczenia uslugi cyfrowej za zgoda konsumenta, prawo do odstapienia od umowy wygasa.",
+          "W przypadku problemow z nadaniem uslugi nalezy skontaktowac sie z adresem email {{service_issue_email}}.",
+          "Uzytkownik ma prawo reklamowania uslugi w przypadku jej nie otrzymania. Reklamacje nalezy zglosic na adres email {{complaint_email}}. Reklamacje beda rozpatrywane w terminie 14 dni.",
+          "Uslugi przypisywane sa do {{service_assignment_target}} na {{service_duration}}, a po uplywie tego czasu {{service_removal_behavior}}.",
+          "Operatorem platnosci jest {{operator_name}}. Dane operatora: {{operator_address}}. Informacje dodatkowe: {{operator_description}}.",
+          "W przypadku problemow z realizacja platnosci elektronicznych Klient moze skontaktowac sie z operatorem za pomoca: {{operator_contact_url}}.",
+          "Administratorem sklepu, danych i odbiorca platnosci jest {{admin_name}}, {{business_description}}, {{street_address}}, {{postal_code}}, {{city}}, adres email - {{contact_email}}."
+        ],
+        "privacy": [
+          "Administratorem danych jest {{admin_name}}, {{business_description}}, {{street_address}}, {{postal_code}}, {{city}}, adres email - {{contact_email}}.",
+          "Dane przetwarzane sa w celu {{processing_purposes}} ({{legal_basis}}).",
+          "Dane moga byc udostepniane {{data_recipients}}.",
+          "Uzytkownik ma prawo do {{user_rights}}.",
+          "Podanie danych jest {{data_requirement}}.",
+          "Strona wykorzystuje pliki cookies {{cookies_scope}}.",
+          "Dane beda przechowywane {{data_retention}}."
+        ]
+      }
+    },
+    {
+      "id": "stripe",
+      "label": "Stripe",
+      "description": "Pelny wariant dla operatora Stripe z uzupelnionymi danymi podmiotu obslugujacego platnosci w Europie.",
+      "templateVariant": "full_operator",
+      "infoMessage": "Przy Stripe w typowym wdrozeniu VIshop osobny regulamin platnosci zwykle nie jest wymagany. W wielu przypadkach wystarcza poprawne dane sprzedawcy oraz polityka prywatnosci.",
+      "titles": {
+        "terms": "Regulamin platnosci",
+        "privacy": "Polityka prywatnosci"
+      },
+      "fieldIds": [
+        "admin_name",
+        "business_description",
+        "street_address",
+        "postal_code",
+        "city",
+        "contact_email",
+        "service_issue_email",
+        "complaint_email",
+        "service_assignment_target",
+        "service_duration",
+        "service_removal_behavior",
+        "operator_name",
+        "operator_address",
+        "operator_contact_url",
+        "operator_description",
+        "processing_purposes",
+        "legal_basis",
+        "data_recipients",
+        "user_rights",
+        "data_requirement",
+        "cookies_scope",
+        "data_retention"
+      ],
+      "staticValues": {
+        "operator_name": "Stripe Payments Europe, Limited",
+        "operator_address": "1 Grand Canal Street Lower, Grand Canal Dock, Dublin, D02 H210, Ireland",
+        "operator_contact_url": "https://stripe.com/legal/imprint",
+        "operator_description": "irlandzka spolka zarejestrowana pod numerem 3206488LH"
+      },
+      "blocks": {
+        "terms": [
+          "Zapoznanie sie z tym regulaminem i zaakceptowanie go jest obowiazkowe przed dokonaniem zakupu.",
+          "Zabrania sie dzialan majacych na celu zaklocenie dzialania serwisu.",
+          "Informujemy, ze z chwila rozpoczecia swiadczenia uslugi cyfrowej za zgoda konsumenta, prawo do odstapienia od umowy wygasa.",
+          "W przypadku problemow z nadaniem uslugi nalezy skontaktowac sie z adresem email {{service_issue_email}}.",
+          "Uzytkownik ma prawo reklamowania uslugi w przypadku jej nie otrzymania. Reklamacje nalezy zglosic na adres email {{complaint_email}}. Reklamacje beda rozpatrywane w terminie 14 dni.",
+          "Uslugi przypisywane sa do {{service_assignment_target}} na {{service_duration}}, a po uplywie tego czasu {{service_removal_behavior}}.",
+          "Operatorem platnosci jest {{operator_name}}. Dane operatora: {{operator_address}}. Informacje dodatkowe: {{operator_description}}.",
+          "W przypadku problemow z realizacja platnosci elektronicznych Klient moze skontaktowac sie z operatorem za pomoca: {{operator_contact_url}}.",
+          "Administratorem sklepu, danych i odbiorca platnosci jest {{admin_name}}, {{business_description}}, {{street_address}}, {{postal_code}}, {{city}}, adres email - {{contact_email}}."
+        ],
+        "privacy": [
+          "Administratorem danych jest {{admin_name}}, {{business_description}}, {{street_address}}, {{postal_code}}, {{city}}, adres email - {{contact_email}}.",
+          "Dane przetwarzane sa w celu {{processing_purposes}} ({{legal_basis}}).",
+          "Dane moga byc udostepniane {{data_recipients}}.",
+          "Uzytkownik ma prawo do {{user_rights}}.",
+          "Podanie danych jest {{data_requirement}}.",
+          "Strona wykorzystuje pliki cookies {{cookies_scope}}.",
+          "Dane beda przechowywane {{data_retention}}."
+        ]
+      }
+    },
+    {
+      "id": "custom",
+      "label": "Custom",
+      "description": "Wariant do recznego wypelnienia dla dowolnego operatora lub niestandardowego posrednika.",
+      "templateVariant": "generic_operator",
+      "titles": {
+        "terms": "Regulamin platnosci",
+        "privacy": "Polityka prywatnosci"
+      },
+      "fieldIds": [
+        "admin_name",
+        "business_description",
+        "street_address",
+        "postal_code",
+        "city",
+        "contact_email",
+        "service_issue_email",
+        "complaint_email",
+        "service_assignment_target",
+        "service_duration",
+        "service_removal_behavior",
+        "operator_name",
+        "operator_address",
+        "operator_contact_url",
+        "operator_description",
+        "processing_purposes",
+        "legal_basis",
+        "data_recipients",
+        "user_rights",
+        "data_requirement",
+        "cookies_scope",
+        "data_retention"
+      ],
+      "staticValues": {
+        "operator_name": "Niestandardowy operator",
+        "operator_address": "dane operatora wymagaja recznej weryfikacji",
+        "operator_contact_url": "https://wiki.vishop.pl/operatorzy-p%C5%82atno%C5%9Bci/custom/",
+        "operator_description": "to wariant pomocniczy i po skopiowaniu tekstu nalezy samodzielnie sprawdzic dane operatora"
+      },
+      "blocks": {
+        "terms": [
+          "Zapoznanie sie z tym regulaminem i zaakceptowanie go jest obowiazkowe przed dokonaniem zakupu.",
+          "Zabrania sie dzialan majacych na celu zaklocenie dzialania serwisu.",
+          "Informujemy, ze z chwila rozpoczecia swiadczenia uslugi cyfrowej za zgoda konsumenta, prawo do odstapienia od umowy wygasa.",
+          "W przypadku problemow z nadaniem uslugi nalezy skontaktowac sie z adresem email {{service_issue_email}}.",
+          "Uzytkownik ma prawo reklamowania uslugi w przypadku jej nie otrzymania. Reklamacje nalezy zglosic na adres email {{complaint_email}}. Reklamacje beda rozpatrywane w terminie 14 dni.",
+          "Uslugi przypisywane sa do {{service_assignment_target}} na {{service_duration}}, a po uplywie tego czasu {{service_removal_behavior}}.",
+          "Operatorem platnosci jest {{operator_name}}. Dane operatora: {{operator_address}}. Informacje dodatkowe: {{operator_description}}.",
+          "W przypadku problemow z realizacja platnosci elektronicznych Klient moze skontaktowac sie z operatorem za pomoca: {{operator_contact_url}}.",
+          "Administratorem sklepu, danych i odbiorca platnosci jest {{admin_name}}, {{business_description}}, {{street_address}}, {{postal_code}}, {{city}}, adres email - {{contact_email}}."
+        ],
+        "privacy": [
+          "Administratorem danych jest {{admin_name}}, {{business_description}}, {{street_address}}, {{postal_code}}, {{city}}, adres email - {{contact_email}}.",
+          "Dane przetwarzane sa w celu {{processing_purposes}} ({{legal_basis}}).",
+          "Dane moga byc udostepniane {{data_recipients}}.",
+          "Uzytkownik ma prawo do {{user_rights}}.",
+          "Podanie danych jest {{data_requirement}}.",
+          "Strona wykorzystuje pliki cookies {{cookies_scope}}.",
+          "Dane beda przechowywane {{data_retention}}."
+        ]
+      }
+    }
+  ]
+}

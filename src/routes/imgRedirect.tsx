@@ -1,6 +1,6 @@
 import {useEffect, useMemo} from "react";
 import {Link, useParams} from "react-router";
-import {decodeRedirectCode} from "../utils/imgUpload.ts";
+import {decodeRedirectCode, normalizeRedirectCode} from "../utils/imgUpload.ts";
 import ImgRedirectError from "./imgRedirectError.tsx";
 
 function ImgRedirect() {
@@ -12,7 +12,7 @@ function ImgRedirect() {
                 return null;
             }
 
-            const imageId = decodeRedirectCode(code);
+            const imageId = decodeRedirectCode(normalizeRedirectCode(code));
             if (!imageId) {
                 return null;
             }
