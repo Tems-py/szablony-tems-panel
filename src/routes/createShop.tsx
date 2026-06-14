@@ -5,19 +5,48 @@ import axios from "axios";
 import {backendUrl} from "../config.ts";
 import Payment from "../components/payment.tsx";
 
+const DOMAIN_REGEX = /^(?=.{1,253}$)(?!-)(?:[a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,63}$/;
+
 const CreateShop: React.FC = () => {
     const navigatorFunction = useNavigate();
     const [boughtTemplates, setBoughtTemplates] = useState<string[]>([])
     const [templates, setTemplates] = useState<{ name: string, price: number, id: number, vishop: boolean }[]>([])
     const [error, setError] = useState<string | null>(null)
+    const [fieldErrors, setFieldErrors] = useState<{domain?: string; vishopId?: string}>({})
 
     const [renewDays, setRenewDays] = useState<number>(95)
     const [domain, setDomain] = useState<string>("")
-    const [vishopId, setVishopId] = useState<number>(0)
+    const [vishopId, setVishopId] = useState<string>("")
     const [type, setType] = useState<string>("")
     const [rulesAccepted, setRulesAccepted] = useState<boolean>(false)
 
     const selectedTemplate = templates.find((t) => t.name === type)
+
+    const validateForm = () => {
+        const nextErrors: {domain?: string; vishopId?: string} = {};
+        const trimmedDomain = domain.trim().toLowerCase();
+        const trimmedVishopId = vishopId.trim();
+
+        if (!trimmedDomain) {
+            nextErrors.domain = "Podaj domenę sklepu.";
+        } else if (!DOMAIN_REGEX.test(trimmedDomain)) {
+            nextErrors.domain = "Podaj poprawną domenę, np. minecraft.pl.";
+        }
+
+        if (!trimmedVishopId) {
+            nextErrors.vishopId = "Podaj ID sklepu Vishop.";
+        } else if (!/^\d+$/.test(trimmedVishopId) || Number(trimmedVishopId) <= 0) {
+            nextErrors.vishopId = "ID sklepu musi być dodatnią liczbą całkowitą.";
+        }
+
+        setFieldErrors(nextErrors);
+
+        return {
+            isValid: Object.keys(nextErrors).length === 0,
+            trimmedDomain,
+            parsedVishopId: Number(trimmedVishopId)
+        };
+    };
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -44,6 +73,12 @@ const CreateShop: React.FC = () => {
     }, []);
 
     const buy = () => {
+        const {isValid, trimmedDomain, parsedVishopId} = validateForm();
+        if (!isValid) {
+            setError("Popraw zaznaczone pola przed przejściem dalej.");
+            return;
+        }
+
         if (!rulesAccepted) {
             setError("Musisz zaakceptować regulamin, aby kontynuować.");
             return;
@@ -52,8 +87,8 @@ const CreateShop: React.FC = () => {
         const token = localStorage.getItem("token");
 
         axios.post(backendUrl + "buy", {
-            domain: domain,
-            vishop_id: vishopId,
+            domain: trimmedDomain,
+            vishop_id: parsedVishopId,
             template: type,
             days: renewDays
         }, {
@@ -121,9 +156,19 @@ const CreateShop: React.FC = () => {
                                 type="text"
                                 placeholder="np. minecraft.pl"
                                 value={domain}
-                                onChange={e => setDomain(e.target.value)}
-                                className="w-full px-3 py-2.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                onChange={e => {
+                                    setDomain(e.target.value);
+                                    if (fieldErrors.domain) {
+                                        setFieldErrors((current) => ({...current, domain: undefined}));
+                                    }
+                                }}
+                                className={`w-full px-3 py-2.5 rounded-lg border bg-white dark:bg-slate-800 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent ${fieldErrors.domain ? "border-red-300 dark:border-red-700" : "border-slate-200 dark:border-slate-700"}`}
                             />
+                            {fieldErrors.domain && (
+                                <p className="text-xs text-red-600 dark:text-red-400 mt-1.5">
+                                    {fieldErrors.domain}
+                                </p>
+                            )}
                             <p className="text-xs text-slate-400 dark:text-slate-500 mt-1.5">
                                 Domena, na której będzie działał Twój sklep. Możesz ją zmienić później.
                             </p>
@@ -139,9 +184,21 @@ const CreateShop: React.FC = () => {
                                 type="number"
                                 placeholder="Wpisz ID sklepu z panel.vishop.pl"
                                 value={vishopId}
-                                onChange={e => setVishopId(Number(e.target.value))}
-                                className="w-full px-3 py-2.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                min="1"
+                                step="1"
+                                onChange={e => {
+                                    setVishopId(e.target.value);
+                                    if (fieldErrors.vishopId) {
+                                        setFieldErrors((current) => ({...current, vishopId: undefined}));
+                                    }
+                                }}
+                                className={`w-full px-3 py-2.5 rounded-lg border bg-white dark:bg-slate-800 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent ${fieldErrors.vishopId ? "border-red-300 dark:border-red-700" : "border-slate-200 dark:border-slate-700"}`}
                             />
+                            {fieldErrors.vishopId && (
+                                <p className="text-xs text-red-600 dark:text-red-400 mt-1.5">
+                                    {fieldErrors.vishopId}
+                                </p>
+                            )}
                             <p className="text-xs text-slate-400 dark:text-slate-500 mt-1.5">
                                 Znajdziesz je w panelu Vishop - służy do synchronizacji danych sklepu.
                             </p>
